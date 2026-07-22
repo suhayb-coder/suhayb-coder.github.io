@@ -244,19 +244,19 @@
 
       .stat-num { font-variant-numeric: tabular-nums; }
 
-      /* Course filter tabs */
-      .course-tab {
+      /* Service filter tabs */
+      .service-tab {
         background: rgba(255, 255, 255, 0.02);
         border: 1px solid var(--border);
         color: var(--text-dim);
       }
-      .course-tab:hover { border-color: var(--primary); color: var(--text-main); }
-      .course-tab.active {
+      .service-tab:hover { border-color: var(--primary); color: var(--text-main); }
+      .service-tab.active {
         background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(45, 212, 191, 0.1));
         border-color: var(--primary);
         color: var(--text-main);
       }
-      .course-card.hidden-card { display: none; }
+      .service-card.hidden-card { display: none; }
 
       ::selection { background: rgba(59, 130, 246, 0.3); color: #fff; }
 
@@ -305,7 +305,7 @@
         </a>
         <div class="hidden md:flex gap-8 items-center">
           <a class="nav-link text-text-dim hover:text-primary text-sm font-medium transition-colors" href="#about">About</a>
-          <a class="nav-link text-text-dim hover:text-primary text-sm font-medium transition-colors" href="#courses">Courses</a>
+          <a class="nav-link text-text-dim hover:text-primary text-sm font-medium transition-colors" href="#services">Services</a>
           <a class="nav-link text-text-dim hover:text-primary text-sm font-medium transition-colors" href="#education">Education</a>
           <a class="nav-link text-text-dim hover:text-primary text-sm font-medium transition-colors" href="#contact">Contact</a>
         </div>
@@ -503,42 +503,59 @@
         </div>
       </section>
 
-      <!-- CS Courses Section -->
-      <section id="courses" class="py-28 px-6 bg-surface/20 border-y border-border">
+      <!-- Services Section -->
+      <section id="services" class="py-28 px-6 bg-surface/20 border-y border-border">
         <div class="max-w-6xl mx-auto">
           <div class="reveal text-center mb-14">
-            <span class="section-label mb-4 justify-center">Academic Curriculum</span>
+            <span class="section-label mb-4 justify-center">What I Offer</span>
             <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight mt-4 mb-5">
-              Computer Science<br/><span class="gradient-text">Coursework</span>
+              Services I<br/><span class="gradient-text">Offer</span>
             </h2>
             <p class="text-lg text-text-dim max-w-2xl mx-auto leading-relaxed">
-              A structured journey through the core and advanced disciplines that shape a
-              well-rounded software engineer — from logic and theory to systems and practice.
+              Turning the computer science skills I've mastered into practical, reliable services
+              for clients, students, and organizations — from full-stack development to systems
+              design, database work, and business logic consulting.
             </p>
           </div>
 
-          <!-- Course filter tabs -->
-          <div class="reveal flex flex-wrap justify-center gap-2 mb-10" id="course-filters">
-            <button data-filter="all" class="course-tab active px-4 py-2 rounded-full text-sm font-semibold transition-all">All Courses</button>
-            <button data-filter="core" class="course-tab px-4 py-2 rounded-full text-sm font-semibold transition-all">Core</button>
-            <button data-filter="engineering" class="course-tab px-4 py-2 rounded-full text-sm font-semibold transition-all">Engineering</button>
-            <button data-filter="systems" class="course-tab px-4 py-2 rounded-full text-sm font-semibold transition-all">Systems</button>
-            <button data-filter="business" class="course-tab px-4 py-2 rounded-full text-sm font-semibold transition-all">Business &amp; Logic</button>
+          <!-- Service filter tabs -->
+          <div class="reveal flex flex-wrap justify-center gap-2 mb-10" id="service-filters">
+            <button data-filter="all" class="service-tab active px-4 py-2 rounded-full text-sm font-semibold transition-all">All Services</button>
+            <button data-filter="development" class="service-tab px-4 py-2 rounded-full text-sm font-semibold transition-all">Development</button>
+            <button data-filter="systems" class="service-tab px-4 py-2 rounded-full text-sm font-semibold transition-all">Systems &amp; Data</button>
+            <button data-filter="consulting" class="service-tab px-4 py-2 rounded-full text-sm font-semibold transition-all">Consulting &amp; Logic</button>
           </div>
 
-          <!-- Course grid -->
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="course-grid">
+          <!-- Service grid -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="service-grid">
+
+            <!-- Web Application Development -->
+            <div class="service-card card reveal rounded-2xl p-6 cursor-pointer" data-category="development" data-service="web">
+              <div class="flex items-start justify-between mb-4">
+                <div class="w-12 h-12 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center">
+                  <span class="material-symbols-outlined text-accent text-[26px]">code_blocks</span>
+                </div>
+                <span class="font-mono text-[10px] text-text-mute uppercase tracking-wider px-2 py-1 rounded-full border border-border">Development</span>
+              </div>
+              <h3 class="text-lg font-bold text-text-main mb-2">Web Application Development</h3>
+              <p class="text-sm text-text-mute leading-relaxed mb-4">Building responsive, full-stack web apps with modern frameworks — from frontend UI to backend APIs and deployment.</p>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-accent/5">React</span>
+                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-accent/5">Node.js</span>
+                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-accent/5">REST APIs</span>
+              </div>
+            </div>
 
             <!-- Software Engineering -->
-            <div class="course-card card reveal rounded-2xl p-6 cursor-pointer" data-category="engineering" data-course="se">
+            <div class="service-card card reveal reveal-delay-1 rounded-2xl p-6 cursor-pointer" data-category="development" data-service="se">
               <div class="flex items-start justify-between mb-4">
                 <div class="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center">
                   <span class="material-symbols-outlined text-primary text-[26px]">integration_instructions</span>
                 </div>
-                <span class="font-mono text-[10px] text-text-mute uppercase tracking-wider px-2 py-1 rounded-full border border-border">Engineering</span>
+                <span class="font-mono text-[10px] text-text-mute uppercase tracking-wider px-2 py-1 rounded-full border border-border">Development</span>
               </div>
               <h3 class="text-lg font-bold text-text-main mb-2">Software Engineering</h3>
-              <p class="text-sm text-text-mute leading-relaxed mb-4">Principles of the SDLC, agile methodologies, requirements engineering, and design patterns for building robust software.</p>
+              <p class="text-sm text-text-mute leading-relaxed mb-4">Designing and delivering robust software using agile workflows, clean architecture, and proven design patterns.</p>
               <div class="flex flex-wrap gap-1.5">
                 <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-primary/5">Agile</span>
                 <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-primary/5">UML</span>
@@ -546,33 +563,33 @@
               </div>
             </div>
 
-            <!-- System Analysis & Design -->
-            <div class="course-card card reveal reveal-delay-1 rounded-2xl p-6 cursor-pointer" data-category="engineering" data-course="sad">
+            <!-- Object-Oriented Application Design -->
+            <div class="service-card card reveal reveal-delay-2 rounded-2xl p-6 cursor-pointer" data-category="development" data-service="oop">
               <div class="flex items-start justify-between mb-4">
-                <div class="w-12 h-12 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center">
-                  <span class="material-symbols-outlined text-accent text-[26px]">account_tree</span>
+                <div class="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center">
+                  <span class="material-symbols-outlined text-primary text-[26px]">widgets</span>
                 </div>
-                <span class="font-mono text-[10px] text-text-mute uppercase tracking-wider px-2 py-1 rounded-full border border-border">Engineering</span>
+                <span class="font-mono text-[10px] text-text-mute uppercase tracking-wider px-2 py-1 rounded-full border border-border">Development</span>
               </div>
-              <h3 class="text-lg font-bold text-text-main mb-2">System Analysis &amp; Design</h3>
-              <p class="text-sm text-text-mute leading-relaxed mb-4">Analyzing business requirements and designing information systems using structured and object-oriented approaches.</p>
+              <h3 class="text-lg font-bold text-text-main mb-2">Object-Oriented Application Design</h3>
+              <p class="text-sm text-text-mute leading-relaxed mb-4">Crafting modular, maintainable codebases using OOP principles — encapsulation, inheritance, polymorphism, and SOLID.</p>
               <div class="flex flex-wrap gap-1.5">
-                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-accent/5">DFD</span>
-                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-accent/5">ER Diagrams</span>
-                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-accent/5">Use Cases</span>
+                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-primary/5">Classes</span>
+                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-primary/5">SOLID</span>
+                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-primary/5">Refactoring</span>
               </div>
             </div>
 
-            <!-- Database Administration -->
-            <div class="course-card card reveal reveal-delay-2 rounded-2xl p-6 cursor-pointer" data-category="systems" data-course="db">
+            <!-- Database Design & Administration -->
+            <div class="service-card card reveal rounded-2xl p-6 cursor-pointer" data-category="systems" data-service="db">
               <div class="flex items-start justify-between mb-4">
                 <div class="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center">
                   <span class="material-symbols-outlined text-primary text-[26px]">database</span>
                 </div>
-                <span class="font-mono text-[10px] text-text-mute uppercase tracking-wider px-2 py-1 rounded-full border border-border">Systems</span>
+                <span class="font-mono text-[10px] text-text-mute uppercase tracking-wider px-2 py-1 rounded-full border border-border">Systems &amp; Data</span>
               </div>
-              <h3 class="text-lg font-bold text-text-main mb-2">Database Administration</h3>
-              <p class="text-sm text-text-mute leading-relaxed mb-4">Relational database design, SQL querying, normalization, transaction management, and performance tuning.</p>
+              <h3 class="text-lg font-bold text-text-main mb-2">Database Design &amp; Administration</h3>
+              <p class="text-sm text-text-mute leading-relaxed mb-4">Designing normalized schemas, writing optimized SQL, managing transactions, and tuning database performance for apps.</p>
               <div class="flex flex-wrap gap-1.5">
                 <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-primary/5">SQL</span>
                 <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-primary/5">Normalization</span>
@@ -580,33 +597,33 @@
               </div>
             </div>
 
-            <!-- Business & Logic -->
-            <div class="course-card card reveal rounded-2xl p-6 cursor-pointer" data-category="business" data-course="bl">
+            <!-- System Analysis & Design -->
+            <div class="service-card card reveal reveal-delay-1 rounded-2xl p-6 cursor-pointer" data-category="systems" data-service="sad">
               <div class="flex items-start justify-between mb-4">
-                <div class="w-12 h-12 rounded-xl bg-gold/10 border border-gold/20 flex items-center justify-center">
-                  <span class="material-symbols-outlined text-gold text-[26px]">psychology</span>
+                <div class="w-12 h-12 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center">
+                  <span class="material-symbols-outlined text-accent text-[26px]">account_tree</span>
                 </div>
-                <span class="font-mono text-[10px] text-text-mute uppercase tracking-wider px-2 py-1 rounded-full border border-border">Business &amp; Logic</span>
+                <span class="font-mono text-[10px] text-text-mute uppercase tracking-wider px-2 py-1 rounded-full border border-border">Systems &amp; Data</span>
               </div>
-              <h3 class="text-lg font-bold text-text-main mb-2">Business &amp; Logic</h3>
-              <p class="text-sm text-text-mute leading-relaxed mb-4">Discrete mathematics, propositional logic, and business process modeling applied to real-world decision-making.</p>
+              <h3 class="text-lg font-bold text-text-main mb-2">System Analysis &amp; Design</h3>
+              <p class="text-sm text-text-mute leading-relaxed mb-4">Analyzing business requirements and producing complete system designs — DFDs, ER models, and use-case documentation.</p>
               <div class="flex flex-wrap gap-1.5">
-                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-gold/5">Logic Gates</span>
-                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-gold/5">Set Theory</span>
-                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-gold/5">Process Models</span>
+                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-accent/5">DFD</span>
+                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-accent/5">ER Diagrams</span>
+                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-accent/5">Use Cases</span>
               </div>
             </div>
 
-            <!-- Data Structures & Algorithms -->
-            <div class="course-card card reveal reveal-delay-1 rounded-2xl p-6 cursor-pointer" data-category="core" data-course="dsa">
+            <!-- Algorithm & Data Structure Solutions -->
+            <div class="service-card card reveal reveal-delay-2 rounded-2xl p-6 cursor-pointer" data-category="systems" data-service="dsa">
               <div class="flex items-start justify-between mb-4">
                 <div class="w-12 h-12 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center">
                   <span class="material-symbols-outlined text-accent text-[26px]">graph_3</span>
                 </div>
-                <span class="font-mono text-[10px] text-text-mute uppercase tracking-wider px-2 py-1 rounded-full border border-border">Core</span>
+                <span class="font-mono text-[10px] text-text-mute uppercase tracking-wider px-2 py-1 rounded-full border border-border">Systems &amp; Data</span>
               </div>
-              <h3 class="text-lg font-bold text-text-main mb-2">Data Structures &amp; Algorithms</h3>
-              <p class="text-sm text-text-mute leading-relaxed mb-4">Foundational structures — arrays, trees, graphs, hash tables — and algorithmic techniques for efficient problem solving.</p>
+              <h3 class="text-lg font-bold text-text-main mb-2">Algorithm &amp; Data Structure Solutions</h3>
+              <p class="text-sm text-text-mute leading-relaxed mb-4">Solving complex problems with efficient, well-analyzed algorithms — optimizing performance and scalability.</p>
               <div class="flex flex-wrap gap-1.5">
                 <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-accent/5">Trees</span>
                 <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-accent/5">Sorting</span>
@@ -614,118 +631,33 @@
               </div>
             </div>
 
-            <!-- Operating Systems -->
-            <div class="course-card card reveal reveal-delay-2 rounded-2xl p-6 cursor-pointer" data-category="systems" data-course="os">
-              <div class="flex items-start justify-between mb-4">
-                <div class="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center">
-                  <span class="material-symbols-outlined text-primary text-[26px]">memory</span>
-                </div>
-                <span class="font-mono text-[10px] text-text-mute uppercase tracking-wider px-2 py-1 rounded-full border border-border">Systems</span>
-              </div>
-              <h3 class="text-lg font-bold text-text-main mb-2">Operating Systems</h3>
-              <p class="text-sm text-text-mute leading-relaxed mb-4">Process scheduling, memory management, file systems, concurrency, and the kernel-level mechanisms that power computing.</p>
-              <div class="flex flex-wrap gap-1.5">
-                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-primary/5">Processes</span>
-                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-primary/5">Threads</span>
-                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-primary/5">Memory</span>
-              </div>
-            </div>
-
-            <!-- Computer Networks -->
-            <div class="course-card card reveal rounded-2xl p-6 cursor-pointer" data-category="systems" data-course="net">
-              <div class="flex items-start justify-between mb-4">
-                <div class="w-12 h-12 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center">
-                  <span class="material-symbols-outlined text-accent text-[26px]">lan</span>
-                </div>
-                <span class="font-mono text-[10px] text-text-mute uppercase tracking-wider px-2 py-1 rounded-full border border-border">Systems</span>
-              </div>
-              <h3 class="text-lg font-bold text-text-main mb-2">Computer Networks</h3>
-              <p class="text-sm text-text-mute leading-relaxed mb-4">Network architectures, the OSI and TCP/IP models, routing protocols, sockets, and modern web infrastructure.</p>
-              <div class="flex flex-wrap gap-1.5">
-                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-accent/5">TCP/IP</span>
-                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-accent/5">Routing</span>
-                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-accent/5">Sockets</span>
-              </div>
-            </div>
-
-            <!-- Object-Oriented Programming -->
-<div class="course-card card reveal reveal-delay-1 rounded-2xl p-6 cursor-pointer" data-category="core" data-course="oop">
-              <div class="flex items-start justify-between mb-4">
-                <div class="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center">
-                  <span class="material-symbols-outlined text-primary text-[26px]">widgets</span>
-                </div>
-                <span class="font-mono text-[10px] text-text-mute uppercase tracking-wider px-2 py-1 rounded-full border border-border">Core</span>
-              </div>
-              <h3 class="text-lg font-bold text-text-main mb-2">Object-Oriented Programming</h3>
-              <p class="text-sm text-text-mute leading-relaxed mb-4">Encapsulation, inheritance, polymorphism, and abstraction — the pillars of modular, maintainable code design.</p>
-              <div class="flex flex-wrap gap-1.5">
-                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-primary/5">Classes</span>
-                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-primary/5">Inheritance</span>
-                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-primary/5">Polymorphism</span>
-              </div>
-            </div>
-
-            <!-- Web Development -->
-            <div class="course-card card reveal reveal-delay-2 rounded-2xl p-6 cursor-pointer" data-category="engineering" data-course="web">
-              <div class="flex items-start justify-between mb-4">
-                <div class="w-12 h-12 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center">
-                  <span class="material-symbols-outlined text-accent text-[26px]">code_blocks</span>
-                </div>
-                <span class="font-mono text-[10px] text-text-mute uppercase tracking-wider px-2 py-1 rounded-full border border-border">Engineering</span>
-              </div>
-              <h3 class="text-lg font-bold text-text-main mb-2">Web Development</h3>
-              <p class="text-sm text-text-mute leading-relaxed mb-4">Frontend and backend web technologies — HTML, CSS, JavaScript, REST APIs, and modern frameworks for full-stack apps.</p>
-              <div class="flex flex-wrap gap-1.5">
-                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-accent/5">REST</span>
-                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-accent/5">React</span>
-                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-accent/5">Node.js</span>
-              </div>
-            </div>
-
-            <!-- Discrete Mathematics -->
-            <div class="course-card card reveal rounded-2xl p-6 cursor-pointer" data-category="business" data-course="dm">
+            <!-- Business Logic & Process Modeling -->
+            <div class="service-card card reveal rounded-2xl p-6 cursor-pointer" data-category="consulting" data-service="bl">
               <div class="flex items-start justify-between mb-4">
                 <div class="w-12 h-12 rounded-xl bg-gold/10 border border-gold/20 flex items-center justify-center">
-                  <span class="material-symbols-outlined text-gold text-[26px]">function</span>
+                  <span class="material-symbols-outlined text-gold text-[26px]">psychology</span>
                 </div>
-                <span class="font-mono text-[10px] text-text-mute uppercase tracking-wider px-2 py-1 rounded-full border border-border">Business &amp; Logic</span>
+                <span class="font-mono text-[10px] text-text-mute uppercase tracking-wider px-2 py-1 rounded-full border border-border">Consulting &amp; Logic</span>
               </div>
-              <h3 class="text-lg font-bold text-text-main mb-2">Discrete Mathematics</h3>
-              <p class="text-sm text-text-mute leading-relaxed mb-4">The mathematical foundations of computing — combinatorics, graph theory, relations, and formal proofs.</p>
+              <h3 class="text-lg font-bold text-text-main mb-2">Business Logic &amp; Process Modeling</h3>
+              <p class="text-sm text-text-mute leading-relaxed mb-4">Translating business rules into formal logic models and process diagrams that drive real-world decision-making systems.</p>
               <div class="flex flex-wrap gap-1.5">
-                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-gold/5">Combinatorics</span>
-                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-gold/5">Graph Theory</span>
-                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-gold/5">Proofs</span>
+                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-gold/5">Logic Gates</span>
+                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-gold/5">Decision Trees</span>
+                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-gold/5">Process Models</span>
               </div>
             </div>
 
-            <!-- Computer Architecture -->
-            <div class="course-card card reveal reveal-delay-1 rounded-2xl p-6 cursor-pointer" data-category="core" data-course="ca">
-              <div class="flex items-start justify-between mb-4">
-                <div class="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center">
-                  <span class="material-symbols-outlined text-primary text-[26px]">developer_board</span>
-                </div>
-                <span class="font-mono text-[10px] text-text-mute uppercase tracking-wider px-2 py-1 rounded-full border border-border">Core</span>
-              </div>
-              <h3 class="text-lg font-bold text-text-main mb-2">Computer Architecture</h3>
-              <p class="text-sm text-text-mute leading-relaxed mb-4">Digital logic, CPU design, instruction sets, pipelining, and the hardware-software interface that underpins all computing.</p>
-              <div class="flex flex-wrap gap-1.5">
-                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-primary/5">CPU</span>
-                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-primary/5">Pipelining</span>
-                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-primary/5">Assembly</span>
-              </div>
-            </div>
-
-            <!-- Information Systems for Business -->
-            <div class="course-card card reveal reveal-delay-2 rounded-2xl p-6 cursor-pointer" data-category="business" data-course="isb">
+            <!-- IT Strategy & Information Systems Consulting -->
+            <div class="service-card card reveal reveal-delay-1 rounded-2xl p-6 cursor-pointer" data-category="consulting" data-service="isb">
               <div class="flex items-start justify-between mb-4">
                 <div class="w-12 h-12 rounded-xl bg-gold/10 border border-gold/20 flex items-center justify-center">
                   <span class="material-symbols-outlined text-gold text-[26px]">insights</span>
                 </div>
-                <span class="font-mono text-[10px] text-text-mute uppercase tracking-wider px-2 py-1 rounded-full border border-border">Business &amp; Logic</span>
+                <span class="font-mono text-[10px] text-text-mute uppercase tracking-wider px-2 py-1 rounded-full border border-border">Consulting &amp; Logic</span>
               </div>
-              <h3 class="text-lg font-bold text-text-main mb-2">Information Systems for Business</h3>
-              <p class="text-sm text-text-mute leading-relaxed mb-4">Bridging technology and enterprise — ERP systems, data analytics, IT strategy, and digital transformation in organizations.</p>
+              <h3 class="text-lg font-bold text-text-main mb-2">IT Strategy &amp; Info Systems Consulting</h3>
+              <p class="text-sm text-text-mute leading-relaxed mb-4">Advising organizations on ERP integration, data analytics, and digital transformation to align technology with strategy.</p>
               <div class="flex flex-wrap gap-1.5">
                 <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-gold/5">ERP</span>
                 <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-gold/5">Analytics</span>
@@ -733,15 +665,32 @@
               </div>
             </div>
 
+            <!-- Technical Tutoring & Mentoring -->
+            <div class="service-card card reveal reveal-delay-2 rounded-2xl p-6 cursor-pointer" data-category="consulting" data-service="tutor">
+              <div class="flex items-start justify-between mb-4">
+                <div class="w-12 h-12 rounded-xl bg-gold/10 border border-gold/20 flex items-center justify-center">
+                  <span class="material-symbols-outlined text-gold text-[26px]">school</span>
+                </div>
+                <span class="font-mono text-[10px] text-text-mute uppercase tracking-wider px-2 py-1 rounded-full border border-border">Consulting &amp; Logic</span>
+              </div>
+              <h3 class="text-lg font-bold text-text-main mb-2">Technical Tutoring &amp; Mentoring</h3>
+              <p class="text-sm text-text-mute leading-relaxed mb-4">Helping fellow students grasp CS fundamentals — programming, algorithms, databases, and system design — through guided sessions.</p>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-gold/5">Programming</span>
+                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-gold/5">Algorithms</span>
+                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-gold/5">Exam Prep</span>
+              </div>
+            </div>
+
           </div>
 
-          <!-- Course detail modal -->
-          <div id="course-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-6 bg-black/70 backdrop-blur-sm">
-            <div class="card rounded-3xl p-8 md:p-10 max-w-lg w-full relative" id="course-modal-content">
-              <button id="course-modal-close" class="absolute top-4 right-4 w-9 h-9 rounded-full border border-border flex items-center justify-center text-text-dim hover:text-primary hover:border-primary transition-colors">
+          <!-- Service detail modal -->
+          <div id="service-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-6 bg-black/70 backdrop-blur-sm">
+            <div class="card rounded-3xl p-8 md:p-10 max-w-lg w-full relative" id="service-modal-content">
+              <button id="service-modal-close" class="absolute top-4 right-4 w-9 h-9 rounded-full border border-border flex items-center justify-center text-text-dim hover:text-primary hover:border-primary transition-colors">
                 <span class="material-symbols-outlined text-[20px]">close</span>
               </button>
-              <div id="course-modal-body"></div>
+              <div id="service-modal-body"></div>
             </div>
           </div>
         </div>
@@ -832,15 +781,15 @@
       );
       document.querySelectorAll(".reveal:not(.in)").forEach((el) => observer.observe(el));
 
-      // Course filter tabs
-      const courseTabs = document.querySelectorAll(".course-tab");
-      const courseCards = document.querySelectorAll(".course-card");
-      courseTabs.forEach((tab) => {
+      // Service filter tabs
+      const serviceTabs = document.querySelectorAll(".service-tab");
+      const serviceCards = document.querySelectorAll(".service-card");
+      serviceTabs.forEach((tab) => {
         tab.addEventListener("click", () => {
-          courseTabs.forEach((t) => t.classList.remove("active"));
+          serviceTabs.forEach((t) => t.classList.remove("active"));
           tab.classList.add("active");
           const filter = tab.dataset.filter;
-          courseCards.forEach((card) => {
+          serviceCards.forEach((card) => {
             if (filter === "all" || card.dataset.category === filter) {
               card.classList.remove("hidden-card");
             } else {
@@ -850,89 +799,71 @@
         });
       });
 
-      // Course detail data
-      const courseDetails = {
+      // Service detail data
+      const serviceDetails = {
+        web: {
+          icon: "code_blocks", color: "accent", tag: "Development",
+          title: "Web Application Development",
+          desc: "I build responsive, full-stack web applications from the ground up — crafting intuitive frontends, designing REST APIs, and wiring up backends with modern frameworks and clean deployment.",
+          deliverables: ["Responsive frontend UI", "RESTful backend APIs", "Authentication & authorization", "Database integration", "API documentation", "Deployment & hosting setup", "Performance optimization", "Ongoing maintenance"],
+        },
         se: {
-          icon: "integration_instructions", color: "primary", tag: "Engineering",
+          icon: "integration_instructions", color: "primary", tag: "Development",
           title: "Software Engineering",
-          desc: "The discipline of designing, developing, testing, and maintaining software systems at scale.",
-          topics: ["Agile & Scrum", "Waterfall Model", "Requirements Engineering", "UML Diagrams", "Design Patterns", "Version Control", "Testing Strategies", "CI/CD Basics"],
-        },
-        sad: {
-          icon: "account_tree", color: "accent", tag: "Engineering",
-          title: "System Analysis & Design",
-          desc: "Methods for analyzing business needs and engineering information systems that meet them.",
-          topics: ["Data Flow Diagrams", "Entity-Relationship Models", "Use Case Modeling", "Structured Analysis", "OOAD", "Prototyping", "System Documentation", "Feasibility Studies"],
-        },
-        db: {
-          icon: "database", color: "primary", tag: "Systems",
-          title: "Database Administration",
-          desc: "Designing, securing, and optimizing the databases that power modern applications.",
-          topics: ["Relational Model", "SQL & Joins", "Normalization (1NF–BCNF)", "Indexing & Query Optimization", "Transactions & ACID", "Stored Procedures", "Backup & Recovery", "Database Security"],
-        },
-        bl: {
-          icon: "psychology", color: "gold", tag: "Business & Logic",
-          title: "Business & Logic",
-          desc: "Applying formal logic and business reasoning to model real-world processes and decisions.",
-          topics: ["Propositional Logic", "Truth Tables", "Logic Gates", "Predicate Logic", "Business Process Modeling", "Decision Trees", "Boolean Algebra", "Process Optimization"],
-        },
-        dsa: {
-          icon: "graph_3", color: "accent", tag: "Core",
-          title: "Data Structures & Algorithms",
-          desc: "The core toolkit for writing efficient, scalable code and solving complex problems.",
-          topics: ["Arrays & Linked Lists", "Stacks & Queues", "Trees & BSTs", "Graphs & Traversal", "Hash Tables", "Sorting Algorithms", "Dynamic Programming", "Time & Space Complexity"],
-        },
-        os: {
-          icon: "memory", color: "primary", tag: "Systems",
-          title: "Operating Systems",
-          desc: "How computers manage resources, run programs, and provide the foundation for all software.",
-          topics: ["Process Management", "Thread Scheduling", "Memory Allocation", "Virtual Memory", "File Systems", "Deadlocks", "Inter-Process Communication", "Security & Protection"],
-        },
-        net: {
-          icon: "lan", color: "accent", tag: "Systems",
-          title: "Computer Networks",
-          desc: "The protocols and architectures that connect computers across the globe.",
-          topics: ["OSI Model", "TCP/IP Stack", "IP Addressing & Subnetting", "Routing Protocols", "DNS & DHCP", "HTTP/HTTPS", "Socket Programming", "Network Security"],
+          desc: "I apply disciplined software engineering practices — agile workflows, requirements analysis, and proven design patterns — to deliver maintainable, well-documented software systems.",
+          deliverables: ["Requirements gathering & analysis", "Agile sprint planning", "UML & architecture diagrams", "Design pattern implementation", "Version control & Git workflow", "Automated testing", "Code reviews & refactoring", "Technical documentation"],
         },
         oop: {
-          icon: "widgets", color: "primary", tag: "Core",
-          title: "Object-Oriented Programming",
-          desc: "Designing software around objects and classes for modularity, reusability, and clarity.",
-          topics: ["Classes & Objects", "Encapsulation", "Inheritance", "Polymorphism", "Abstraction", "Interfaces", "SOLID Principles", "Design by Contract"],
+          icon: "widgets", color: "primary", tag: "Development",
+          title: "Object-Oriented Application Design",
+          desc: "I design modular, reusable codebases using OOP principles — encapsulation, inheritance, polymorphism, and the SOLID guidelines — so your software stays clean and adaptable.",
+          deliverables: ["Class & interface design", "SOLID principle audits", "Design pattern selection", "Codebase refactoring", "API surface design", "Unit test scaffolding", "Architecture documentation", "Maintainability review"],
         },
-        web: {
-          icon: "code_blocks", color: "accent", tag: "Engineering",
-          title: "Web Development",
-          desc: "Building interactive, full-stack web applications from frontend to backend.",
-          topics: ["HTML5 & CSS3", "JavaScript ES6+", "DOM Manipulation", "RESTful APIs", "React Fundamentals", "Node.js & Express", "Authentication", "Responsive Design"],
+        db: {
+          icon: "database", color: "primary", tag: "Systems & Data",
+          title: "Database Design & Administration",
+          desc: "I design normalized relational schemas, write optimized SQL queries, manage transactions safely, and tune database performance for production applications.",
+          deliverables: ["Schema design & normalization", "SQL query writing & optimization", "Indexing strategy", "Stored procedures & functions", "Transaction & ACID management", "Backup & recovery planning", "Database security setup", "Performance tuning"],
         },
-        dm: {
-          icon: "function", color: "gold", tag: "Business & Logic",
-          title: "Discrete Mathematics",
-          desc: "The mathematical language that underpins computation, algorithms, and logic.",
-          topics: ["Set Theory", "Relations & Functions", "Combinatorics", "Graph Theory", "Recurrence Relations", "Modular Arithmetic", "Formal Proofs", "Automata Theory"],
+        sad: {
+          icon: "account_tree", color: "accent", tag: "Systems & Data",
+          title: "System Analysis & Design",
+          desc: "I analyze your business requirements and translate them into complete system designs — data flow diagrams, ER models, and use-case documentation ready for development.",
+          deliverables: ["Requirements elicitation", "Data flow diagrams (DFDs)", "Entity-relationship models", "Use case & scenario modeling", "Structured & OOAD analysis", "System architecture design", "Feasibility studies", "Full system documentation"],
         },
-        ca: {
-          icon: "developer_board", color: "primary", tag: "Core",
-          title: "Computer Architecture",
-          desc: "From logic gates up — how processors, memory, and logic gates execute your code.",
-          topics: ["Digital Logic Gates", "Boolean Circuits", "CPU Design", "Instruction Sets", "Pipelining", "Cache Hierarchy", "Memory Organization", "Assembly Language"],
+        dsa: {
+          icon: "graph_3", color: "accent", tag: "Systems & Data",
+          title: "Algorithm & Data Structure Solutions",
+          desc: "I solve complex computational problems with efficient, well-analyzed algorithms — choosing the right data structures and optimizing for performance and scalability.",
+          deliverables: ["Problem analysis & decomposition", "Data structure selection", "Algorithm design & implementation", "Time & space complexity analysis", "Performance optimization", "Competitive programming solutions", "Code walkthrough & explanation", "Complexity benchmarking"],
+        },
+        bl: {
+          icon: "psychology", color: "gold", tag: "Consulting & Logic",
+          title: "Business Logic & Process Modeling",
+          desc: "I translate your business rules into formal logic models and process diagrams that power real-world decision-making and automation systems.",
+          deliverables: ["Business rule extraction", "Propositional & predicate logic modeling", "Decision tree design", "Business process diagrams", "Boolean logic optimization", "Process flow documentation", "Rule engine specification", "Decision automation guidance"],
         },
         isb: {
-          icon: "insights", color: "gold", tag: "Business & Logic",
-          title: "Information Systems for Business",
-          desc: "How organizations leverage technology to drive strategy, efficiency, and innovation.",
-          topics: ["Enterprise Systems (ERP)", "Business Intelligence", "Data Analytics", "IT Strategy", "Digital Transformation", "E-Commerce Systems", "Project Management", "IT Governance"],
+          icon: "insights", color: "gold", tag: "Consulting & Logic",
+          title: "IT Strategy & Info Systems Consulting",
+          desc: "I advise organizations on leveraging technology strategically — ERP integration, data analytics, and digital transformation aligned with business goals.",
+          deliverables: ["IT strategy assessment", "ERP system guidance", "Business intelligence setup", "Data analytics recommendations", "Digital transformation roadmap", "E-commerce system advice", "IT project planning", "Technology stack selection"],
+        },
+        tutor: {
+          icon: "school", color: "gold", tag: "Consulting & Logic",
+          title: "Technical Tutoring & Mentoring",
+          desc: "I help fellow students and beginners master CS fundamentals — programming, algorithms, databases, and system design — through patient, structured one-on-one sessions.",
+          deliverables: ["Programming fundamentals", "Algorithm walkthroughs", "Database & SQL coaching", "System design basics", "Exam preparation", "Project guidance", "Code review & feedback", "Study plan creation"],
         },
       };
 
-      const modal = document.getElementById("course-modal");
-      const modalBody = document.getElementById("course-modal-body");
-      const modalClose = document.getElementById("course-modal-close");
+      const modal = document.getElementById("service-modal");
+      const modalBody = document.getElementById("service-modal-body");
+      const modalClose = document.getElementById("service-modal-close");
 
-      courseCards.forEach((card) => {
+      serviceCards.forEach((card) => {
         card.addEventListener("click", () => {
-          const data = courseDetails[card.dataset.course];
+          const data = serviceDetails[card.dataset.service];
           if (!data) return;
           const colorMap = { gold: { c: "#fbbf24", bg: "rgba(251,191,36,0.1)", bd: "rgba(251,191,36,0.2)" }, accent: { c: "#2dd4bf", bg: "rgba(45,212,191,0.1)", bd: "rgba(45,212,191,0.2)" }, primary: { c: "#3b82f6", bg: "rgba(59,130,246,0.1)", bd: "rgba(59,130,246,0.2)" } };
           const cm = colorMap[data.color] || colorMap.primary;
@@ -947,10 +878,14 @@
               </div>
             </div>
             <p class="text-text-dim leading-relaxed mb-6">${data.desc}</p>
-            <p class="font-mono text-xs text-text-mute uppercase tracking-wider mb-3">Key Topics Covered</p>
-            <div class="grid grid-cols-2 gap-2">
-              ${data.topics.map((t) => `<div class="flex items-center gap-2 text-sm text-text-dim px-3 py-2 rounded-lg bg-surface/40 border border-border"><span class="material-symbols-outlined text-[16px]" style="color: ${cm.c};">check_circle</span>${t}</div>`).join("")}
+            <p class="font-mono text-xs text-text-mute uppercase tracking-wider mb-3">What's Included</p>
+            <div class="grid grid-cols-2 gap-2 mb-6">
+              ${data.deliverables.map((t) => `<div class="flex items-center gap-2 text-sm text-text-dim px-3 py-2 rounded-lg bg-surface/40 border border-border"><span class="material-symbols-outlined text-[16px]" style="color: ${cm.c};">check_circle</span>${t}</div>`).join("")}
             </div>
+            <a href="#contact" onclick="document.getElementById('service-modal').classList.add('hidden'); document.getElementById('service-modal').classList.remove('flex');" class="btn-primary text-white px-5 py-3 rounded-xl text-sm font-semibold flex items-center justify-center gap-2 w-full">
+              <span class="material-symbols-outlined text-[20px]">send</span>
+              <span>Request this service</span>
+            </a>
           `;
           modal.classList.remove("hidden");
           modal.classList.add("flex");
