@@ -1,5 +1,4 @@
 <!doctype html>
-
 <html class="scroll-smooth" lang="en">
   <head>
     <meta charset="utf-8" />
@@ -10,15 +9,10 @@
       content="Portfolio of Suhayb Said Swaleh - Software Developer, and Computer Science Student at SUZA."
       name="description"
     />
-    <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap"
       rel="stylesheet"
     />
     <link
@@ -27,31 +21,235 @@
     />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <style>
-      .material-symbols-outlined {
-        font-variation-settings:
-          "FILL" 0,
-          "wght" 400,
-          "GRAD" 0,
-          "opsz" 24;
+      :root {
+        --bg: #070b14;
+        --bg-2: #0c1220;
+        --surface: #111a2e;
+        --surface-2: #16203a;
+        --border: #1f2d4a;
+        --text: #e8eef9;
+        --text-dim: #9aa9c4;
+        --text-mute: #6b7a96;
+        --primary: #3b82f6;
+        --primary-light: #60a5fa;
+        --primary-glow: #1d4ed8;
+        --accent: #2dd4bf;
+        --accent-light: #5eead4;
+        --gold: #fbbf24;
       }
-      .timeline-dot::before {
+
+      * { -webkit-font-smoothing: antialiased; }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Inter", sans-serif;
+        overflow-x: hidden;
+      }
+
+      .material-symbols-outlined {
+        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+      }
+
+      /* Grain overlay */
+      .grain::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+        opacity: 0.035;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' /%3E%3C/svg%3E");
+      }
+
+      /* Animated mesh gradient */
+      .mesh-bg {
+        background:
+          radial-gradient(at 20% 20%, rgba(59, 130, 246, 0.18) 0px, transparent 50%),
+          radial-gradient(at 80% 10%, rgba(45, 212, 191, 0.12) 0px, transparent 50%),
+          radial-gradient(at 50% 80%, rgba(29, 78, 216, 0.15) 0px, transparent 50%),
+          radial-gradient(at 90% 60%, rgba(96, 165, 250, 0.1) 0px, transparent 50%);
+        animation: meshShift 18s ease-in-out infinite alternate;
+      }
+      @keyframes meshShift {
+        0% { background-position: 0% 0%, 100% 0%, 50% 100%, 100% 50%; }
+        100% { background-position: 30% 20%, 70% 30%, 40% 70%, 60% 80%; }
+      }
+
+      /* Floating orbs */
+      .orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: 0.5;
+        animation: float 12s ease-in-out infinite;
+      }
+      @keyframes float {
+        0%, 100% { transform: translate(0, 0) scale(1); }
+        33% { transform: translate(30px, -40px) scale(1.1); }
+        66% { transform: translate(-20px, 20px) scale(0.95); }
+      }
+
+      /* Reveal animation */
+      .reveal {
+        opacity: 0;
+        transform: translateY(32px);
+        transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .reveal.in {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal-delay-1 { transition-delay: 0.1s; }
+      .reveal-delay-2 { transition-delay: 0.2s; }
+      .reveal-delay-3 { transition-delay: 0.3s; }
+      .reveal-delay-4 { transition-delay: 0.4s; }
+
+      /* Gradient text */
+      .gradient-text {
+        background: linear-gradient(135deg, #60a5fa 0%, #2dd4bf 50%, #3b82f6 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-size: 200% auto;
+        animation: shimmer 6s linear infinite;
+      }
+      @keyframes shimmer {
+        0% { background-position: 0% center; }
+        100% { background-position: 200% center; }
+      }
+
+      /* Primary button */
+      .btn-primary {
+        position: relative;
+        background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+        overflow: hidden;
+        transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+        box-shadow: 0 8px 24px -8px rgba(59, 130, 246, 0.5);
+      }
+      .btn-primary::before {
         content: "";
         position: absolute;
-        left: -33px;
-        top: 8px;
-        width: 12px;
-        height: 12px;
+        inset: 0;
+        background: linear-gradient(135deg, #60a5fa, #2dd4bf);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 36px -8px rgba(59, 130, 246, 0.6); }
+      .btn-primary:hover::before { opacity: 1; }
+      .btn-primary:active { transform: translateY(0) scale(0.98); }
+      .btn-primary > * { position: relative; z-index: 1; }
+
+      /* Ghost button */
+      .btn-ghost {
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.02);
+        transition: all 0.3s ease;
+      }
+      .btn-ghost:hover {
+        border-color: var(--primary);
+        background: rgba(59, 130, 246, 0.08);
+        transform: translateY(-2px);
+      }
+
+      /* Card */
+      .card {
+        background: linear-gradient(160deg, rgba(22, 32, 58, 0.6), rgba(17, 26, 46, 0.4));
+        border: 1px solid var(--border);
+        backdrop-filter: blur(12px);
+        transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+      }
+      .card:hover {
+        transform: translateY(-6px);
+        border-color: rgba(59, 130, 246, 0.4);
+        box-shadow: 0 20px 40px -16px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(59, 130, 246, 0.1);
+      }
+
+      /* Timeline */
+      .timeline-line {
+        background: linear-gradient(180deg, var(--primary), var(--accent), transparent);
+      }
+      .timeline-dot {
+        position: absolute;
+        left: -7px;
+        top: 6px;
+        width: 14px;
+        height: 14px;
         border-radius: 50%;
-        background-color: #1a237e;
-        border: 2px solid #ffffff;
-        box-shadow: 0 0 0 4px #e0e0ff;
+        background: var(--bg);
+        border: 2px solid var(--primary);
+        box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15), 0 0 12px rgba(59, 130, 246, 0.5);
       }
-      .bento-card-hover {
-        transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      .timeline-item:hover .timeline-dot {
+        background: var(--primary);
+        box-shadow: 0 0 0 6px rgba(59, 130, 246, 0.2), 0 0 20px rgba(59, 130, 246, 0.7);
       }
-      .bento-card-hover:hover {
-        transform: translateY(-4px);
+
+      /* Nav blur on scroll */
+      .nav-scrolled {
+        background: rgba(7, 11, 20, 0.8);
+        backdrop-filter: blur(20px) saturate(180%);
+        border-bottom-color: rgba(31, 45, 74, 0.6);
       }
+
+      /* Avatar glow */
+      .avatar-ring {
+        position: relative;
+      }
+      .avatar-ring::before {
+        content: "";
+        position: absolute;
+        inset: -4px;
+        border-radius: 50%;
+        background: conic-gradient(from 0deg, #3b82f6, #2dd4bf, #60a5fa, #3b82f6);
+        z-index: -1;
+        animation: spin 8s linear infinite;
+      }
+      @keyframes spin { to { transform: rotate(360deg); } }
+
+      /* Skill chip */
+      .chip {
+        background: rgba(59, 130, 246, 0.08);
+        border: 1px solid rgba(59, 130, 246, 0.2);
+        transition: all 0.3s ease;
+      }
+      .chip:hover {
+        background: rgba(45, 212, 191, 0.1);
+        border-color: rgba(45, 212, 191, 0.4);
+        transform: translateY(-2px);
+      }
+
+      /* Section label */
+      .section-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 13px;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+      .section-label::before {
+        content: "";
+        width: 24px;
+        height: 1px;
+        background: var(--accent);
+      }
+
+      /* Marquee */
+      .marquee { overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
+      .marquee-track { display: flex; gap: 48px; animation: marquee 30s linear infinite; width: max-content; }
+      @keyframes marquee { to { transform: translateX(-50%); } }
+
+      .stat-num { font-variant-numeric: tabular-nums; }
+
+      ::selection { background: rgba(59, 130, 246, 0.3); color: #fff; }
+
+      ::-webkit-scrollbar { width: 10px; }
+      ::-webkit-scrollbar-track { background: var(--bg); }
+      ::-webkit-scrollbar-thumb { background: var(--surface-2); border-radius: 10px; border: 2px solid var(--bg); }
+      ::-webkit-scrollbar-thumb:hover { background: var(--primary-glow); }
     </style>
     <script id="tailwind-config">
       tailwind.config = {
@@ -59,449 +257,281 @@
         theme: {
           extend: {
             colors: {
-              tertiary: "#0B0F19",
-              "surface-container-highest": "#374151",
-              "primary-fixed-dim": "#60A5FA",
-              "status-available": "#10B981",
-              "inverse-on-surface": "#ecf1ff",
-              "tertiary-fixed-dim": "#adc6ff",
-              "on-secondary-fixed-variant": "#00497d",
-              "surface-variant": "#F8FAFC",
-              error: "#ba1a1a",
-              "outline-variant": "#c6c5d4",
-              "on-tertiary-fixed": "#001a42",
-              "on-background": "#F3F4F6",
-              "on-secondary": "#ffffff",
-              "tertiary-fixed": "#d8e2ff",
-              primary: "#3B82F6",
-              "secondary-fixed-dim": "#9ecaff",
-              "on-error": "#ffffff",
-              "secondary-fixed": "#d1e4ff",
-              "error-container": "#ffdad6",
-              "on-tertiary-container": "#5c95ff",
-              "primary-fixed": "#93C5FD",
-              "on-primary": "#ffffff",
-              "on-tertiary-fixed-variant": "#004395",
-              "surface-tint": "#4c56af",
-              "surface-bright": "#f9f9ff",
-              "on-primary-fixed": "#000767",
-              "on-tertiary": "#ffffff",
-              "surface-container-high": "#dee8ff",
-              "surface-container": "#1F2937",
-              "on-surface-variant": "#9CA3AF",
-              "on-primary-container": "#8690ee",
-              "surface-dim": "#cfdaf2",
-              "on-error-container": "#93000a",
-              "inverse-primary": "#bdc2ff",
-              "surface-container-low": "#111827",
-              "primary-container": "#172554",
-              surface: "#0A0F1C",
-              "inverse-surface": "#263143",
-              "status-pending": "#F59E0B",
-              "tertiary-container": "#002d68",
-              "on-surface": "#F3F4F6",
-              "on-primary-fixed-variant": "#343d96",
-              secondary: "#0061a4",
-              background: "#0A0F1C",
-              "secondary-container": "#33a0fd",
-              "on-secondary-container": "#00355c",
-              "surface-container-lowest": "#030712",
-              "on-secondary-fixed": "#001d36",
-              "border-subtle": "#374151",
-              outline: "#767683",
-            },
-            borderRadius: {
-              DEFAULT: "0.125rem",
-              lg: "0.25rem",
-              xl: "0.5rem",
-              full: "0.75rem",
-            },
-            spacing: {
-              "stack-lg": "24px",
-              "section-gap-desktop": "120px",
-              "stack-md": "16px",
-              gutter: "24px",
-              "stack-sm": "8px",
-              "container-max-width": "1140px",
-              "section-gap-mobile": "64px",
+              bg: "#070b14",
+              surface: "#111a2e",
+              "surface-2": "#16203a",
+              border: "#1f2d4a",
+              "text-main": "#e8eef9",
+              "text-dim": "#9aa9c4",
+              "text-mute": "#6b7a96",
+              primary: "#3b82f6",
+              "primary-light": "#60a5fa",
+              accent: "#2dd4bf",
+              gold: "#fbbf24",
             },
             fontFamily: {
-              "headline-md": ["Inter"],
-              "display-lg-mobile": ["Inter"],
-              "display-lg": ["Inter"],
-              "body-md": ["Inter"],
-              "headline-sm": ["Inter"],
-              "label-md": ["JetBrains Mono"],
-              "label-sm": ["JetBrains Mono"],
-              "body-lg": ["Inter"],
-            },
-            fontSize: {
-              "headline-md": ["32px", { lineHeight: "1.3", fontWeight: "700" }],
-              "display-lg-mobile": [
-                "32px",
-                { lineHeight: "1.2", fontWeight: "800" },
-              ],
-              "display-lg": [
-                "48px",
-                {
-                  lineHeight: "1.1",
-                  letterSpacing: "-0.02em",
-                  fontWeight: "800",
-                },
-              ],
-              "body-md": ["16px", { lineHeight: "1.6", fontWeight: "400" }],
-              "headline-sm": ["24px", { lineHeight: "1.4", fontWeight: "600" }],
-              "label-md": [
-                "14px",
-                {
-                  lineHeight: "1.0",
-                  letterSpacing: "0.05em",
-                  fontWeight: "500",
-                },
-              ],
-              "label-sm": ["12px", { lineHeight: "1.0", fontWeight: "500" }],
-              "body-lg": ["18px", { lineHeight: "1.7", fontWeight: "400" }],
+              sans: ["Inter", "sans-serif"],
+              mono: ["JetBrains Mono", "monospace"],
             },
           },
         },
       };
     </script>
   </head>
-  <body
-    class="bg-background text-on-surface selection:bg-primary-fixed-dim selection:text-on-primary-fixed"
-  >
+  <body class="grain">
     <!-- TopNavBar -->
     <nav
-      class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-gutter py-4 max-w-full bg-surface/80 backdrop-blur-md border-b border-border-subtle"
+      id="navbar"
+      class="fixed top-0 left-0 w-full z-50 transition-all duration-300 border-b border-transparent"
     >
-      <div
-        class="max-w-container-max-width mx-auto w-full flex justify-between items-center"
-      >
-        <span class="font-headline-sm text-headline-sm font-black text-primary"
-          >MY PORTFOLIO</span
-        >
-        <div class="hidden md:flex gap-stack-lg items-center">
-          <a
-            class="text-on-surface-variant font-medium font-label-md text-label-md hover:text-primary transition-colors"
-            href="#about"
-            >About</a
-          >
-          <a
-            class="text-on-surface-variant font-medium font-label-md text-label-md hover:text-primary transition-colors"
-            href="#education"
-            >Education</a
-          >
-
-          <a
-            class="text-on-surface-variant font-medium font-label-md text-label-md hover:text-primary transition-colors"
-            href="#contact"
-            >Contact</a
-          >
+      <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+        <a href="#hero" class="flex items-center gap-2 group">
+          <span class="w-9 h-9 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center font-mono font-bold text-white text-sm shadow-lg shadow-primary/30 group-hover:scale-110 transition-transform">S</span>
+          <span class="font-mono text-sm font-semibold tracking-tight text-text-main">suhayb.dev</span>
+        </a>
+        <div class="hidden md:flex gap-8 items-center">
+          <a class="nav-link text-text-dim hover:text-primary text-sm font-medium transition-colors" href="#about">About</a>
+          <a class="nav-link text-text-dim hover:text-primary text-sm font-medium transition-colors" href="#education">Education</a>
+          <a class="nav-link text-text-dim hover:text-primary text-sm font-medium transition-colors" href="#contact">Contact</a>
         </div>
         <a
           href="./Suhayb_CV.pdf"
           target="_blank"
-          class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white px-8 py-4 rounded-full font-label-md text-label-md font-bold uppercase tracking-wider shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transform hover:-translate-y-1 active:scale-95 transition-all duration-300 flex items-center justify-center gap-3 w-fit"
+          class="btn-primary text-white px-5 py-2.5 rounded-full text-sm font-semibold flex items-center gap-2"
         >
-          <span class="material-symbols-outlined text-[20px]">download</span>
-          Download CV
+          <span class="material-symbols-outlined text-[18px]">download</span>
+          <span>Resume</span>
         </a>
       </div>
     </nav>
-    <main class="mt-16">
+
+    <main>
       <!-- Hero Section -->
-      <section
-        class="relative min-h-[85vh] flex flex-col items-center justify-center text-center px-gutter overflow-hidden bg-primary-container"
-      >
-        <!-- Subtle Radial Gradient Pattern -->
-        <div
-          class="absolute inset-0 opacity-20 pointer-events-none"
-          style="
-            background-image: radial-gradient(
-              circle at 2px 2px,
-              #bdc2ff 1px,
-              transparent 0
-            );
-            background-size: 32px 32px;
-          "
-        ></div>
-        <div class="relative z-10 max-w-4xl">
-          <div
-            class="w-24 h-24 rounded-full border-4 border-primary-fixed-dim p-1 mx-auto mb-stack-lg overflow-hidden bg-white shadow-xl"
-          >
+      <section id="hero" class="relative min-h-screen flex items-center justify-center px-6 overflow-hidden mesh-bg">
+        <div class="orb w-[400px] h-[400px] bg-primary/30 -top-20 -left-20"></div>
+        <div class="orb w-[350px] h-[350px] bg-accent/20 bottom-10 right-10" style="animation-delay: -4s"></div>
+
+        <div class="relative z-10 max-w-4xl text-center">
+          <div class="reveal in inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-surface/40 backdrop-blur-sm mb-8">
+            <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
+            <span class="font-mono text-xs text-text-dim tracking-wide">Available for opportunities</span>
+          </div>
+
+          <div class="avatar-ring w-32 h-32 rounded-full p-1 mx-auto mb-8 overflow-hidden bg-surface reveal in reveal-delay-1">
             <img
               alt="Suhayb Said Swaleh"
-              class="w-full h-full object-cover object-top"
+              class="w-full h-full object-cover object-top rounded-full"
               src="./IMG_3816.JPG.jpeg"
             />
           </div>
-          <h1 class="font-display-lg text-display-lg text-on-primary mb-2">
-            Suhayb Said Swaleh
+
+          <h1 class="reveal in reveal-delay-2 text-5xl md:text-7xl font-extrabold tracking-tight mb-4 leading-[1.05]">
+            Hi, I'm <span class="gradient-text">Suhayb</span>
           </h1>
-          <p
-            class="font-headline-sm text-headline-sm text-primary-fixed mb-stack-lg"
-          >
-            Software Developer | Student
+          <p class="reveal in reveal-delay-2 text-xl md:text-2xl text-text-dim font-medium mb-6">
+            Software Developer <span class="text-text-mute mx-2">/</span> CS Student
           </p>
-          <p
-            class="font-body-lg text-body-lg text-primary-fixed-dim/80 mb-12 max-w-2xl mx-auto leading-relaxed"
-          >
+          <p class="reveal in reveal-delay-3 text-lg text-text-mute max-w-2xl mx-auto mb-10 leading-relaxed">
             A passionate student dedicated to learning and practicing modern software
-            development. Focused on building practical projects, mastering new
-            technologies, and growing as a software engineer.
+            development — building practical projects, mastering new technologies, and
+            growing as an engineer.
           </p>
-          <div class="flex flex-col md:flex-row gap-stack-md justify-center">
-            <a
-              class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white px-8 py-4 rounded-full font-label-md text-label-md font-bold uppercase tracking-wider shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transform hover:-translate-y-1 active:scale-95 transition-all duration-300 flex items-center justify-center gap-3 w-fit"
-              href="#about"
-            >
-              Explore
+
+          <div class="reveal in reveal-delay-4 flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="#about" class="btn-primary text-white px-8 py-4 rounded-full text-sm font-bold uppercase tracking-wider flex items-center justify-center gap-2">
+              <span>Explore my work</span>
+              <span class="material-symbols-outlined text-[20px]">arrow_downward</span>
             </a>
-            <a
-              class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white px-8 py-4 rounded-full font-label-md text-label-md font-bold uppercase tracking-wider shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transform hover:-translate-y-1 active:scale-95 transition-all duration-300 flex items-center justify-center gap-3 w-fit"
-              href="#contact"
-            >
-              Get In Touch
+            <a href="#contact" class="btn-ghost text-text-main px-8 py-4 rounded-full text-sm font-bold uppercase tracking-wider flex items-center justify-center gap-2">
+              <span>Get in touch</span>
             </a>
           </div>
         </div>
+
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 hidden md:block">
+          <div class="w-6 h-10 rounded-full border-2 border-text-mute/40 flex justify-center pt-2">
+            <div class="w-1 h-2 rounded-full bg-text-mute/60 animate-bounce"></div>
+          </div>
+        </div>
       </section>
+
+      <!-- Tech marquee -->
+      <section class="py-10 border-y border-border bg-surface/30">
+        <div class="marquee">
+          <div class="marquee-track font-mono text-text-mute text-sm font-medium">
+            <span>JavaScript</span><span>·</span><span>Python</span><span>·</span><span>React</span><span>·</span><span>Node.js</span><span>·</span><span>HTML5</span><span>·</span><span>CSS3</span><span>·</span><span>Tailwind</span><span>·</span><span>Git</span><span>·</span><span>GitHub</span><span>·</span><span>SQL</span><span>·</span>
+            <span>JavaScript</span><span>·</span><span>Python</span><span>·</span><span>React</span><span>·</span><span>Node.js</span><span>·</span><span>HTML5</span><span>·</span><span>CSS3</span><span>·</span><span>Tailwind</span><span>·</span><span>Git</span><span>·</span><span>GitHub</span><span>·</span><span>SQL</span><span>·</span>
+          </div>
+        </div>
+      </section>
+
       <!-- About Section -->
-      <section
-        class="py-section-gap-desktop px-gutter max-w-container-max-width mx-auto grid grid-cols-1 md:grid-cols-12 gap-16 items-start"
-        id="about"
-      >
-        <div class="md:col-span-7">
-          <div class="mb-4">
-            <span
-              class="font-label-md text-label-md text-primary tracking-widest uppercase mb-2 block"
-              >The Student</span
-            >
-            <h2
-              class="font-headline-md text-headline-md text-on-surface mb-stack-md"
-            >
-              Building the Future through Code
+      <section id="about" class="py-28 px-6">
+        <div class="max-w-6xl mx-auto">
+          <div class="reveal mb-16 max-w-3xl">
+            <span class="section-label mb-4">The Student</span>
+            <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight mt-4 mb-6 leading-tight">
+              Building the future<br />through <span class="gradient-text">code</span>
+            </h2>
+            <div class="space-y-5 text-lg text-text-dim leading-relaxed">
+              <p>
+                Suhayb Said Swaleh is a dedicated student with a passion for modern software
+                development and creating impactful applications.
+              </p>
+              <p>
+                With a strong foundation in academic theory, his focus is on turning those concepts
+                into practical, real-world projects that solve everyday problems.
+              </p>
+              <p>
+                Outside of coursework, Suhayb is an enthusiastic learner, constantly exploring
+                new technologies and building tools to expand his skill set.
+              </p>
+            </div>
+          </div>
+
+          <!-- Stats -->
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-5">
+            <div class="card reveal rounded-2xl p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="material-symbols-outlined text-primary text-[22px]">code</span>
+                <span class="stat-num text-4xl font-extrabold text-text-main">15<span class="text-primary">+</span></span>
+              </div>
+              <span class="font-mono text-xs text-text-mute uppercase tracking-wider">GitHub Repos</span>
+            </div>
+            <div class="card reveal reveal-delay-1 rounded-2xl p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="material-symbols-outlined text-accent text-[22px]">group</span>
+                <span class="stat-num text-4xl font-extrabold text-text-main">12</span>
+              </div>
+              <span class="font-mono text-xs text-text-mute uppercase tracking-wider">Followers</span>
+            </div>
+            <div class="card reveal reveal-delay-2 rounded-2xl p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="material-symbols-outlined text-primary text-[22px]">rocket_launch</span>
+                <span class="stat-num text-4xl font-extrabold text-text-main">4<span class="text-primary">+</span></span>
+              </div>
+              <span class="font-mono text-xs text-text-mute uppercase tracking-wider">Projects Built</span>
+            </div>
+            <div class="card reveal reveal-delay-3 rounded-2xl p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="material-symbols-outlined text-accent text-[22px]">schedule</span>
+                <span class="stat-num text-4xl font-extrabold text-text-main">2<span class="text-primary">+</span></span>
+              </div>
+              <span class="font-mono text-xs text-text-mute uppercase tracking-wider">Years Coding</span>
+            </div>
+          </div>
+
+          <!-- Skills -->
+          <div class="reveal mt-12">
+            <p class="font-mono text-xs text-text-mute uppercase tracking-wider mb-4">Technologies I work with</p>
+            <div class="flex flex-wrap gap-3">
+              <span class="chip px-4 py-2 rounded-full text-sm text-text-dim font-medium">JavaScript</span>
+              <span class="chip px-4 py-2 rounded-full text-sm text-text-dim font-medium">Python</span>
+              <span class="chip px-4 py-2 rounded-full text-sm text-text-dim font-medium">React</span>
+              <span class="chip px-4 py-2 rounded-full text-sm text-text-dim font-medium">Node.js</span>
+              <span class="chip px-4 py-2 rounded-full text-sm text-text-dim font-medium">HTML5</span>
+              <span class="chip px-4 py-2 rounded-full text-sm text-text-dim font-medium">CSS3</span>
+              <span class="chip px-4 py-2 rounded-full text-sm text-text-dim font-medium">Tailwind CSS</span>
+              <span class="chip px-4 py-2 rounded-full text-sm text-text-dim font-medium">Git &amp; GitHub</span>
+              <span class="chip px-4 py-2 rounded-full text-sm text-text-dim font-medium">SQL</span>
+              <span class="chip px-4 py-2 rounded-full text-sm text-text-dim font-medium">Problem Solving</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Education Section -->
+      <section id="education" class="py-28 px-6 bg-surface/20 border-y border-border">
+        <div class="max-w-3xl mx-auto">
+          <div class="reveal text-center mb-16">
+            <span class="section-label mb-4 justify-center">Academic Journey</span>
+            <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight mt-4">
+              Education <span class="text-text-mute">&amp;</span> <span class="gradient-text">Milestones</span>
             </h2>
           </div>
-          <div
-            class="space-y-stack-md font-body-md text-body-md text-on-surface-variant leading-relaxed"
-          >
-            <p>
-              Suhayb Said Swaleh is a dedicated student with a passion for modern software
-              development and creating impactful applications.
-            </p>
-            <p>
-              With a strong foundation in academic theory, his focus is on turning those concepts
-              into practical, real-world projects that solve everyday problems.
-            </p>
-            <p>
-              Outside of coursework, Suhayb is an enthusiastic learner, constantly exploring
-              new technologies and building tools to expand his skill set.
-            </p>
-          </div>
-        </div>
-        <div class="md:col-span-5 grid grid-cols-2 gap-4">
-          <div
-            class="bg-surface-variant p-stack-lg border border-border-subtle bento-card-hover"
-          >
-            <span class="block font-display-lg text-[40px] text-primary mb-1"
-              >15+</span
-            >
-            <span
-              class="font-label-md text-label-md text-on-surface-variant uppercase"
-              >GitHub Repos</span
-            >
-          </div>
-          <div
-            class="bg-surface-variant p-stack-lg border border-border-subtle bento-card-hover"
-          >
-            <span class="block font-display-lg text-[40px] text-primary mb-1"
-              >12</span
-            >
-            <span
-              class="font-label-md text-label-md text-on-surface-variant uppercase"
-              >Followers</span
-            >
-          </div>
-          <div
-            class="bg-surface-variant p-stack-lg border border-border-subtle bento-card-hover"
-          >
-            <span class="block font-display-lg text-[40px] text-primary mb-1"
-              >4+</span
-            >
-            <span
-              class="font-label-md text-label-md text-on-surface-variant uppercase"
-              >Projects</span
-            >
-          </div>
-          <div
-            class="bg-surface-variant p-stack-lg border border-border-subtle bento-card-hover"
-          >
-            <span class="block font-display-lg text-[40px] text-primary mb-1"
-              >2+</span
-            >
-            <span
-              class="font-label-md text-label-md text-on-surface-variant uppercase"
-              >Years Exp.</span
-            >
-          </div>
-        </div>
-      </section>
-      <!-- Education Section -->
-      <section
-        class="py-section-gap-desktop bg-surface-container-lowest"
-        id="education"
-      >
-        <div class="max-w-container-max-width mx-auto px-gutter">
-          <h2
-            class="font-headline-md text-headline-md text-primary text-center mb-16"
-          >
-            Academic Journey
-          </h2>
-          <div
-            class="relative max-w-3xl mx-auto border-l-2 border-border-subtle ml-8 md:ml-auto"
-          >
-            <!-- BSc CS -->
-            <div class="mb-12 relative pl-10 timeline-dot">
-              <span class="font-label-sm text-label-sm text-primary mb-1 block"
-                >Oct 2024 — Present</span
-              >
-              <h3 class="font-headline-sm text-headline-sm text-on-surface">
-                Bachelor of Science in Computer Science
-              </h3>
-              <p class="font-body-md text-body-md text-on-surface-variant">
-                The State University of Zanzibar
-              </p>
+
+          <div class="relative pl-8">
+            <div class="absolute left-0 top-2 bottom-2 w-0.5 timeline-line"></div>
+
+            <div class="timeline-item reveal relative mb-12 pl-2">
+              <div class="timeline-dot"></div>
+              <span class="font-mono text-xs text-accent tracking-wider mb-2 block">Oct 2024 — Present</span>
+              <h3 class="text-xl font-bold text-text-main mb-1">Bachelor of Science in Computer Science</h3>
+              <p class="text-text-dim mb-2">The State University of Zanzibar</p>
+              <p class="text-sm text-text-mute leading-relaxed">Pursuing a degree focused on software engineering, algorithms, and modern computing systems.</p>
             </div>
-            <!-- Turkish Lang -->
-            <div class="mb-12 relative pl-10 timeline-dot">
-              <span class="font-label-sm text-label-sm text-primary mb-1 block"
-                >Oct 2022 — Feb 2023</span
-              >
-              <h3 class="font-headline-sm text-headline-sm text-on-surface">
-                Certificate in Turkish Language
-              </h3>
-              <p class="font-body-md text-body-md text-on-surface-variant">
-                Sivas Cumhuriyet Üniversitesi
-              </p>
+
+            <div class="timeline-item reveal relative mb-12 pl-2">
+              <div class="timeline-dot"></div>
+              <span class="font-mono text-xs text-accent tracking-wider mb-2 block">Oct 2022 — Feb 2023</span>
+              <h3 class="text-xl font-bold text-text-main mb-1">Certificate in Turkish Language</h3>
+              <p class="text-text-dim mb-2">Sivas Cumhuriyet Üniversitesi</p>
+              <p class="text-sm text-text-mute leading-relaxed">Language proficiency program fostering cross-cultural communication skills.</p>
             </div>
-            <!-- ACSE -->
-            <div class="mb-12 relative pl-10 timeline-dot">
-              <span class="font-label-sm text-label-sm text-primary mb-1 block"
-                >May 2020 — May 2022</span
-              >
-              <h3 class="font-headline-sm text-headline-sm text-on-surface">
-                Advanced Certificate of Secondary Education
-              </h3>
-              <p class="font-body-md text-body-md text-on-surface-variant">
-                Zanzibar Commercial Secondary School
-              </p>
+
+            <div class="timeline-item reveal relative mb-12 pl-2">
+              <div class="timeline-dot"></div>
+              <span class="font-mono text-xs text-accent tracking-wider mb-2 block">May 2020 — May 2022</span>
+              <h3 class="text-xl font-bold text-text-main mb-1">Advanced Certificate of Secondary Education</h3>
+              <p class="text-text-dim mb-2">Zanzibar Commercial Secondary School</p>
+              <p class="text-sm text-text-mute leading-relaxed">Advanced studies with a focus on commercial and technical subjects.</p>
             </div>
-            <!-- CSE -->
-            <div class="relative pl-10 timeline-dot">
-              <span class="font-label-sm text-label-sm text-primary mb-1 block"
-                >Jan 2016 — Nov 2019</span
-              >
-              <h3 class="font-headline-sm text-headline-sm text-on-surface">
-                Certificate of Secondary Education
-              </h3>
-              <p class="font-body-md text-body-md text-on-surface-variant">
-                Tumekuja Secondary School
-              </p>
+
+            <div class="timeline-item reveal relative pl-2">
+              <div class="timeline-dot"></div>
+              <span class="font-mono text-xs text-accent tracking-wider mb-2 block">Jan 2016 — Nov 2019</span>
+              <h3 class="text-xl font-bold text-text-main mb-1">Certificate of Secondary Education</h3>
+              <p class="text-text-dim mb-2">Tumekuja Secondary School</p>
+              <p class="text-sm text-text-mute leading-relaxed">Foundation in core academics, sparking an early interest in technology.</p>
             </div>
           </div>
         </div>
       </section>
 
       <!-- Contact Section -->
-      <section class="py-section-gap-desktop" id="contact">
-        <div class="max-w-container-max-width mx-auto px-gutter">
-          <div
-            class="bg-white/5 backdrop-blur-lg border border-white/10 p-12 relative overflow-hidden rounded-3xl shadow-2xl"
-          >
-            <div
-              class="absolute right-0 top-0 w-64 h-64 bg-primary rounded-full blur-[100px] -mr-32 -mt-32 opacity-50"
-            ></div>
-            <div
-              class="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
-            >
-              <div>
-                <h2
-                  class="font-headline-md text-headline-md text-on-primary mb-4"
-                >
-                  Let's Collaborate
+      <section id="contact" class="py-28 px-6">
+        <div class="max-w-5xl mx-auto">
+          <div class="card reveal rounded-3xl p-10 md:p-16 relative overflow-hidden">
+            <div class="orb w-[300px] h-[300px] bg-primary/30 -top-20 -right-20"></div>
+            <div class="orb w-[250px] h-[250px] bg-accent/20 -bottom-20 -left-10" style="animation-delay: -6s"></div>
+
+            <div class="relative z-10 grid grid-cols-1 lg:grid-cols-5 gap-10 items-center">
+              <div class="lg:col-span-3">
+                <span class="section-label mb-4">Let's Connect</span>
+                <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight mt-4 mb-5 leading-tight">
+                  Let's build<br />something <span class="gradient-text">together</span>
                 </h2>
-                <p
-                  class="font-body-lg text-body-lg text-primary-fixed-dim/80 mb-8"
-                >
-                  Whether you're a fellow student, recruiter, or industry
-                  professional, I'm always open to discussing new projects and
-                  opportunities.
+                <p class="text-lg text-text-dim mb-8 leading-relaxed max-w-md">
+                  Whether you're a fellow student, recruiter, or industry professional —
+                  I'm always open to discussing new projects and opportunities.
                 </p>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <a
-                    class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white px-8 py-4 rounded-full font-label-md text-label-md font-bold uppercase tracking-wider shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transform hover:-translate-y-1 active:scale-95 transition-all duration-300 flex items-center justify-center gap-3 w-full"
-                    href="mailto:suhaybsaeed1@gmail.com"
-                  >
-                    <span
-                      class="material-symbols-outlined text-primary-fixed-dim group-hover:scale-110 transition-transform"
-                      >mail</span
-                    >
-                    <span class="font-label-md text-label-md text-on-primary"
-                      >Email Me</span
-                    >
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <a href="mailto:suhaybsaeed1@gmail.com" class="btn-primary text-white px-5 py-3.5 rounded-xl text-sm font-semibold flex items-center gap-3">
+                    <span class="material-symbols-outlined text-[20px]">mail</span>
+                    <span>Email Me</span>
                   </a>
-                  <a
-                    class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white px-8 py-4 rounded-full font-label-md text-label-md font-bold uppercase tracking-wider shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transform hover:-translate-y-1 active:scale-95 transition-all duration-300 flex items-center justify-center gap-3 w-full"
-                    href="https://www.linkedin.com/in/suhayb-saeed-44b7503a9/"
-                  >
-                    <span
-                      class="material-symbols-outlined text-primary-fixed-dim group-hover:scale-110 transition-transform"
-                      >hub</span
-                    >
-                    <span class="font-label-md text-label-md text-on-primary"
-                      >LinkedIn</span
-                    >
+                  <a href="https://www.linkedin.com/in/suhayb-saeed-44b7503a9/" target="_blank" class="btn-ghost text-text-main px-5 py-3.5 rounded-xl text-sm font-semibold flex items-center gap-3">
+                    <span class="material-symbols-outlined text-[20px] text-accent">hub</span>
+                    <span>LinkedIn</span>
                   </a>
-                  <a
-                    class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white px-8 py-4 rounded-full font-label-md text-label-md font-bold uppercase tracking-wider shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transform hover:-translate-y-1 active:scale-95 transition-all duration-300 flex items-center justify-center gap-3 w-full"
-                    href="https://github.com/suhayb-coder"
-                  >
-                    <span
-                      class="material-symbols-outlined text-primary-fixed-dim group-hover:scale-110 transition-transform"
-                      >code</span
-                    >
-                    <span class="font-label-md text-label-md text-on-primary"
-                      >GitHub</span
-                    >
+                  <a href="https://github.com/suhayb-coder" target="_blank" class="btn-ghost text-text-main px-5 py-3.5 rounded-xl text-sm font-semibold flex items-center gap-3">
+                    <span class="material-symbols-outlined text-[20px] text-accent">code</span>
+                    <span>GitHub</span>
                   </a>
-                  <a
-                    class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white px-8 py-4 rounded-full font-label-md text-label-md font-bold uppercase tracking-wider shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transform hover:-translate-y-1 active:scale-95 transition-all duration-300 flex items-center justify-center gap-3 w-full"
-                    href="#"
-                    onclick="alert('WhatsApp Username: SuhaybCoderX'); return false;"
-                  >
-                    <span
-                      class="material-symbols-outlined text-primary-fixed-dim group-hover:scale-110 transition-transform"
-                      >chat</span
-                    >
-                    <span class="font-label-md text-label-md text-on-primary"
-                      >WhatsApp</span
-                    >
+                  <a href="#" onclick="alert('WhatsApp Username: SuhaybCoderX'); return false;" class="btn-ghost text-text-main px-5 py-3.5 rounded-xl text-sm font-semibold flex items-center gap-3">
+                    <span class="material-symbols-outlined text-[20px] text-accent">chat</span>
+                    <span>WhatsApp</span>
                   </a>
                 </div>
               </div>
-              <div class="hidden lg:block">
-                <div
-                  class="aspect-square bg-surface/5 backdrop-blur-sm border border-white/10 rounded-full flex items-center justify-center relative"
-                >
-                  <div
-                    class="absolute inset-0 animate-pulse bg-primary/20 rounded-full"
-                  ></div>
-                  <span
-                    class="material-symbols-outlined text-[120px] text-primary-fixed-dim/40"
-                    style="font-variation-settings: &quot;wght&quot; 200"
-                    >school</span
-                  >
+
+              <div class="hidden lg:flex lg:col-span-2 justify-center">
+                <div class="relative w-48 h-48">
+                  <div class="absolute inset-0 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 blur-2xl animate-pulse"></div>
+                  <div class="relative w-full h-full rounded-full border border-border bg-surface/50 backdrop-blur-sm flex items-center justify-center">
+                    <span class="material-symbols-outlined text-[80px] text-primary-light/60" style="font-variation-settings: 'wght' 200">school</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -509,72 +539,55 @@
         </div>
       </section>
     </main>
+
     <!-- Footer -->
-    <footer
-      class="w-full py-stack-lg px-gutter flex flex-col md:flex-row justify-between items-center gap-stack-md bg-tertiary"
-    >
-      <div
-        class="max-w-container-max-width mx-auto w-full flex flex-col md:flex-row justify-between items-center gap-6"
-      >
-        <div class="flex flex-col items-center md:items-start">
-          <span
-            class="font-headline-sm text-headline-sm text-on-tertiary font-black mb-1"
-            >Suhayb Said Swaleh</span
-          >
-          <p
-            class="font-body-md text-body-md text-surface-container-highest/60"
-          >
-            © 2026 Software Developer &amp; Student. All rights reserved.
-          </p>
+    <footer class="border-t border-border bg-surface/20">
+      <div class="max-w-6xl mx-auto px-6 py-10 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div class="flex items-center gap-3">
+          <span class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center font-mono font-bold text-white text-xs">S</span>
+          <div>
+            <p class="font-semibold text-text-main text-sm">Suhayb Said Swaleh</p>
+            <p class="text-text-mute text-xs">© 2026 Software Developer &amp; Student. All rights reserved.</p>
+          </div>
         </div>
-        <div class="flex gap-stack-lg">
-          <a
-            class="text-surface-container-highest hover:text-on-tertiary transition-colors font-label-md text-label-md"
-            href="https://github.com/suhayb-coder"
-            >GitHub</a
-          >
-          <a
-            class="text-surface-container-highest hover:text-on-tertiary transition-colors font-label-md text-label-md"
-            href="https://www.linkedin.com/in/suhayb-saeed-44b7503a9/"
-            >LinkedIn</a
-          >
+        <div class="flex gap-6">
+          <a class="text-text-dim hover:text-primary transition-colors text-sm font-medium" href="https://github.com/suhayb-coder" target="_blank">GitHub</a>
+          <a class="text-text-dim hover:text-primary transition-colors text-sm font-medium" href="https://www.linkedin.com/in/suhayb-saeed-44b7503a9/" target="_blank">LinkedIn</a>
+          <a class="text-text-dim hover:text-primary transition-colors text-sm font-medium" href="mailto:suhaybsaeed1@gmail.com">Email</a>
         </div>
       </div>
     </footer>
-    <script>
-      // Simple scroll behavior for nav highlighting
-      window.addEventListener("scroll", () => {
-        const sections = document.querySelectorAll("section");
-        const navLinks = document.querySelectorAll("nav a");
 
+    <script>
+      // Scroll reveal
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("in");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12, rootMargin: "0px 0px -60px 0px" }
+      );
+      document.querySelectorAll(".reveal:not(.in)").forEach((el) => observer.observe(el));
+
+      // Navbar scroll state
+      const navbar = document.getElementById("navbar");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 20) navbar.classList.add("nav-scrolled");
+        else navbar.classList.remove("nav-scrolled");
+
+        // Active nav link
+        const sections = document.querySelectorAll("section[id]");
         let current = "";
         sections.forEach((section) => {
-          const sectionTop = section.offsetTop;
-          const sectionHeight = section.clientHeight;
-          if (pageYOffset >= sectionTop - 100) {
-            current = section.getAttribute("id");
-          }
+          if (window.scrollY >= section.offsetTop - 120) current = section.id;
         });
-
-        navLinks.forEach((link) => {
-          link.classList.remove(
-            "text-primary",
-            "border-b-2",
-            "border-primary",
-            "pb-1",
-            "font-bold",
-          );
-          link.classList.add("text-on-surface-variant", "font-medium");
-          if (link.getAttribute("href").includes(current) && current !== "") {
-            link.classList.add(
-              "text-primary",
-              "border-b-2",
-              "border-primary",
-              "pb-1",
-              "font-bold",
-            );
-            link.classList.remove("text-on-surface-variant", "font-medium");
-          }
+        document.querySelectorAll(".nav-link").forEach((link) => {
+          link.classList.toggle("text-primary", link.getAttribute("href") === "#" + current);
+          link.classList.toggle("text-text-dim", link.getAttribute("href") !== "#" + current);
         });
       });
     </script>
