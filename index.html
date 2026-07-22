@@ -244,6 +244,20 @@
 
       .stat-num { font-variant-numeric: tabular-nums; }
 
+      /* Course filter tabs */
+      .course-tab {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid var(--border);
+        color: var(--text-dim);
+      }
+      .course-tab:hover { border-color: var(--primary); color: var(--text-main); }
+      .course-tab.active {
+        background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(45, 212, 191, 0.1));
+        border-color: var(--primary);
+        color: var(--text-main);
+      }
+      .course-card.hidden-card { display: none; }
+
       ::selection { background: rgba(59, 130, 246, 0.3); color: #fff; }
 
       ::-webkit-scrollbar { width: 10px; }
@@ -291,6 +305,7 @@
         </a>
         <div class="hidden md:flex gap-8 items-center">
           <a class="nav-link text-text-dim hover:text-primary text-sm font-medium transition-colors" href="#about">About</a>
+          <a class="nav-link text-text-dim hover:text-primary text-sm font-medium transition-colors" href="#courses">Courses</a>
           <a class="nav-link text-text-dim hover:text-primary text-sm font-medium transition-colors" href="#education">Education</a>
           <a class="nav-link text-text-dim hover:text-primary text-sm font-medium transition-colors" href="#contact">Contact</a>
         </div>
@@ -488,6 +503,250 @@
         </div>
       </section>
 
+      <!-- CS Courses Section -->
+      <section id="courses" class="py-28 px-6 bg-surface/20 border-y border-border">
+        <div class="max-w-6xl mx-auto">
+          <div class="reveal text-center mb-14">
+            <span class="section-label mb-4 justify-center">Academic Curriculum</span>
+            <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight mt-4 mb-5">
+              Computer Science<br/><span class="gradient-text">Coursework</span>
+            </h2>
+            <p class="text-lg text-text-dim max-w-2xl mx-auto leading-relaxed">
+              A structured journey through the core and advanced disciplines that shape a
+              well-rounded software engineer — from logic and theory to systems and practice.
+            </p>
+          </div>
+
+          <!-- Course filter tabs -->
+          <div class="reveal flex flex-wrap justify-center gap-2 mb-10" id="course-filters">
+            <button data-filter="all" class="course-tab active px-4 py-2 rounded-full text-sm font-semibold transition-all">All Courses</button>
+            <button data-filter="core" class="course-tab px-4 py-2 rounded-full text-sm font-semibold transition-all">Core</button>
+            <button data-filter="engineering" class="course-tab px-4 py-2 rounded-full text-sm font-semibold transition-all">Engineering</button>
+            <button data-filter="systems" class="course-tab px-4 py-2 rounded-full text-sm font-semibold transition-all">Systems</button>
+            <button data-filter="business" class="course-tab px-4 py-2 rounded-full text-sm font-semibold transition-all">Business &amp; Logic</button>
+          </div>
+
+          <!-- Course grid -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="course-grid">
+
+            <!-- Software Engineering -->
+            <div class="course-card card reveal rounded-2xl p-6 cursor-pointer" data-category="engineering" data-course="se">
+              <div class="flex items-start justify-between mb-4">
+                <div class="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center">
+                  <span class="material-symbols-outlined text-primary text-[26px]">integration_instructions</span>
+                </div>
+                <span class="font-mono text-[10px] text-text-mute uppercase tracking-wider px-2 py-1 rounded-full border border-border">Engineering</span>
+              </div>
+              <h3 class="text-lg font-bold text-text-main mb-2">Software Engineering</h3>
+              <p class="text-sm text-text-mute leading-relaxed mb-4">Principles of the SDLC, agile methodologies, requirements engineering, and design patterns for building robust software.</p>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-primary/5">Agile</span>
+                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-primary/5">UML</span>
+                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-primary/5">Design Patterns</span>
+              </div>
+            </div>
+
+            <!-- System Analysis & Design -->
+            <div class="course-card card reveal reveal-delay-1 rounded-2xl p-6 cursor-pointer" data-category="engineering" data-course="sad">
+              <div class="flex items-start justify-between mb-4">
+                <div class="w-12 h-12 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center">
+                  <span class="material-symbols-outlined text-accent text-[26px]">account_tree</span>
+                </div>
+                <span class="font-mono text-[10px] text-text-mute uppercase tracking-wider px-2 py-1 rounded-full border border-border">Engineering</span>
+              </div>
+              <h3 class="text-lg font-bold text-text-main mb-2">System Analysis &amp; Design</h3>
+              <p class="text-sm text-text-mute leading-relaxed mb-4">Analyzing business requirements and designing information systems using structured and object-oriented approaches.</p>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-accent/5">DFD</span>
+                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-accent/5">ER Diagrams</span>
+                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-accent/5">Use Cases</span>
+              </div>
+            </div>
+
+            <!-- Database Administration -->
+            <div class="course-card card reveal reveal-delay-2 rounded-2xl p-6 cursor-pointer" data-category="systems" data-course="db">
+              <div class="flex items-start justify-between mb-4">
+                <div class="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center">
+                  <span class="material-symbols-outlined text-primary text-[26px]">database</span>
+                </div>
+                <span class="font-mono text-[10px] text-text-mute uppercase tracking-wider px-2 py-1 rounded-full border border-border">Systems</span>
+              </div>
+              <h3 class="text-lg font-bold text-text-main mb-2">Database Administration</h3>
+              <p class="text-sm text-text-mute leading-relaxed mb-4">Relational database design, SQL querying, normalization, transaction management, and performance tuning.</p>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-primary/5">SQL</span>
+                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-primary/5">Normalization</span>
+                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-primary/5">Indexing</span>
+              </div>
+            </div>
+
+            <!-- Business & Logic -->
+            <div class="course-card card reveal rounded-2xl p-6 cursor-pointer" data-category="business" data-course="bl">
+              <div class="flex items-start justify-between mb-4">
+                <div class="w-12 h-12 rounded-xl bg-gold/10 border border-gold/20 flex items-center justify-center">
+                  <span class="material-symbols-outlined text-gold text-[26px]">psychology</span>
+                </div>
+                <span class="font-mono text-[10px] text-text-mute uppercase tracking-wider px-2 py-1 rounded-full border border-border">Business &amp; Logic</span>
+              </div>
+              <h3 class="text-lg font-bold text-text-main mb-2">Business &amp; Logic</h3>
+              <p class="text-sm text-text-mute leading-relaxed mb-4">Discrete mathematics, propositional logic, and business process modeling applied to real-world decision-making.</p>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-gold/5">Logic Gates</span>
+                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-gold/5">Set Theory</span>
+                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-gold/5">Process Models</span>
+              </div>
+            </div>
+
+            <!-- Data Structures & Algorithms -->
+            <div class="course-card card reveal reveal-delay-1 rounded-2xl p-6 cursor-pointer" data-category="core" data-course="dsa">
+              <div class="flex items-start justify-between mb-4">
+                <div class="w-12 h-12 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center">
+                  <span class="material-symbols-outlined text-accent text-[26px]">graph_3</span>
+                </div>
+                <span class="font-mono text-[10px] text-text-mute uppercase tracking-wider px-2 py-1 rounded-full border border-border">Core</span>
+              </div>
+              <h3 class="text-lg font-bold text-text-main mb-2">Data Structures &amp; Algorithms</h3>
+              <p class="text-sm text-text-mute leading-relaxed mb-4">Foundational structures — arrays, trees, graphs, hash tables — and algorithmic techniques for efficient problem solving.</p>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-accent/5">Trees</span>
+                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-accent/5">Sorting</span>
+                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-accent/5">Big-O</span>
+              </div>
+            </div>
+
+            <!-- Operating Systems -->
+            <div class="course-card card reveal reveal-delay-2 rounded-2xl p-6 cursor-pointer" data-category="systems" data-course="os">
+              <div class="flex items-start justify-between mb-4">
+                <div class="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center">
+                  <span class="material-symbols-outlined text-primary text-[26px]">memory</span>
+                </div>
+                <span class="font-mono text-[10px] text-text-mute uppercase tracking-wider px-2 py-1 rounded-full border border-border">Systems</span>
+              </div>
+              <h3 class="text-lg font-bold text-text-main mb-2">Operating Systems</h3>
+              <p class="text-sm text-text-mute leading-relaxed mb-4">Process scheduling, memory management, file systems, concurrency, and the kernel-level mechanisms that power computing.</p>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-primary/5">Processes</span>
+                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-primary/5">Threads</span>
+                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-primary/5">Memory</span>
+              </div>
+            </div>
+
+            <!-- Computer Networks -->
+            <div class="course-card card reveal rounded-2xl p-6 cursor-pointer" data-category="systems" data-course="net">
+              <div class="flex items-start justify-between mb-4">
+                <div class="w-12 h-12 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center">
+                  <span class="material-symbols-outlined text-accent text-[26px]">lan</span>
+                </div>
+                <span class="font-mono text-[10px] text-text-mute uppercase tracking-wider px-2 py-1 rounded-full border border-border">Systems</span>
+              </div>
+              <h3 class="text-lg font-bold text-text-main mb-2">Computer Networks</h3>
+              <p class="text-sm text-text-mute leading-relaxed mb-4">Network architectures, the OSI and TCP/IP models, routing protocols, sockets, and modern web infrastructure.</p>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-accent/5">TCP/IP</span>
+                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-accent/5">Routing</span>
+                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-accent/5">Sockets</span>
+              </div>
+            </div>
+
+            <!-- Object-Oriented Programming -->
+<div class="course-card card reveal reveal-delay-1 rounded-2xl p-6 cursor-pointer" data-category="core" data-course="oop">
+              <div class="flex items-start justify-between mb-4">
+                <div class="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center">
+                  <span class="material-symbols-outlined text-primary text-[26px]">widgets</span>
+                </div>
+                <span class="font-mono text-[10px] text-text-mute uppercase tracking-wider px-2 py-1 rounded-full border border-border">Core</span>
+              </div>
+              <h3 class="text-lg font-bold text-text-main mb-2">Object-Oriented Programming</h3>
+              <p class="text-sm text-text-mute leading-relaxed mb-4">Encapsulation, inheritance, polymorphism, and abstraction — the pillars of modular, maintainable code design.</p>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-primary/5">Classes</span>
+                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-primary/5">Inheritance</span>
+                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-primary/5">Polymorphism</span>
+              </div>
+            </div>
+
+            <!-- Web Development -->
+            <div class="course-card card reveal reveal-delay-2 rounded-2xl p-6 cursor-pointer" data-category="engineering" data-course="web">
+              <div class="flex items-start justify-between mb-4">
+                <div class="w-12 h-12 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center">
+                  <span class="material-symbols-outlined text-accent text-[26px]">code_blocks</span>
+                </div>
+                <span class="font-mono text-[10px] text-text-mute uppercase tracking-wider px-2 py-1 rounded-full border border-border">Engineering</span>
+              </div>
+              <h3 class="text-lg font-bold text-text-main mb-2">Web Development</h3>
+              <p class="text-sm text-text-mute leading-relaxed mb-4">Frontend and backend web technologies — HTML, CSS, JavaScript, REST APIs, and modern frameworks for full-stack apps.</p>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-accent/5">REST</span>
+                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-accent/5">React</span>
+                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-accent/5">Node.js</span>
+              </div>
+            </div>
+
+            <!-- Discrete Mathematics -->
+            <div class="course-card card reveal rounded-2xl p-6 cursor-pointer" data-category="business" data-course="dm">
+              <div class="flex items-start justify-between mb-4">
+                <div class="w-12 h-12 rounded-xl bg-gold/10 border border-gold/20 flex items-center justify-center">
+                  <span class="material-symbols-outlined text-gold text-[26px]">function</span>
+                </div>
+                <span class="font-mono text-[10px] text-text-mute uppercase tracking-wider px-2 py-1 rounded-full border border-border">Business &amp; Logic</span>
+              </div>
+              <h3 class="text-lg font-bold text-text-main mb-2">Discrete Mathematics</h3>
+              <p class="text-sm text-text-mute leading-relaxed mb-4">The mathematical foundations of computing — combinatorics, graph theory, relations, and formal proofs.</p>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-gold/5">Combinatorics</span>
+                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-gold/5">Graph Theory</span>
+                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-gold/5">Proofs</span>
+              </div>
+            </div>
+
+            <!-- Computer Architecture -->
+            <div class="course-card card reveal reveal-delay-1 rounded-2xl p-6 cursor-pointer" data-category="core" data-course="ca">
+              <div class="flex items-start justify-between mb-4">
+                <div class="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center">
+                  <span class="material-symbols-outlined text-primary text-[26px]">developer_board</span>
+                </div>
+                <span class="font-mono text-[10px] text-text-mute uppercase tracking-wider px-2 py-1 rounded-full border border-border">Core</span>
+              </div>
+              <h3 class="text-lg font-bold text-text-main mb-2">Computer Architecture</h3>
+              <p class="text-sm text-text-mute leading-relaxed mb-4">Digital logic, CPU design, instruction sets, pipelining, and the hardware-software interface that underpins all computing.</p>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-primary/5">CPU</span>
+                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-primary/5">Pipelining</span>
+                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-primary/5">Assembly</span>
+              </div>
+            </div>
+
+            <!-- Information Systems for Business -->
+            <div class="course-card card reveal reveal-delay-2 rounded-2xl p-6 cursor-pointer" data-category="business" data-course="isb">
+              <div class="flex items-start justify-between mb-4">
+                <div class="w-12 h-12 rounded-xl bg-gold/10 border border-gold/20 flex items-center justify-center">
+                  <span class="material-symbols-outlined text-gold text-[26px]">insights</span>
+                </div>
+                <span class="font-mono text-[10px] text-text-mute uppercase tracking-wider px-2 py-1 rounded-full border border-border">Business &amp; Logic</span>
+              </div>
+              <h3 class="text-lg font-bold text-text-main mb-2">Information Systems for Business</h3>
+              <p class="text-sm text-text-mute leading-relaxed mb-4">Bridging technology and enterprise — ERP systems, data analytics, IT strategy, and digital transformation in organizations.</p>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-gold/5">ERP</span>
+                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-gold/5">Analytics</span>
+                <span class="text-[11px] font-mono text-text-dim px-2 py-1 rounded-md bg-gold/5">IT Strategy</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Course detail modal -->
+          <div id="course-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-6 bg-black/70 backdrop-blur-sm">
+            <div class="card rounded-3xl p-8 md:p-10 max-w-lg w-full relative" id="course-modal-content">
+              <button id="course-modal-close" class="absolute top-4 right-4 w-9 h-9 rounded-full border border-border flex items-center justify-center text-text-dim hover:text-primary hover:border-primary transition-colors">
+                <span class="material-symbols-outlined text-[20px]">close</span>
+              </button>
+              <div id="course-modal-body"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- Contact Section -->
       <section id="contact" class="py-28 px-6">
         <div class="max-w-5xl mx-auto">
@@ -572,6 +831,142 @@
         { threshold: 0.12, rootMargin: "0px 0px -60px 0px" }
       );
       document.querySelectorAll(".reveal:not(.in)").forEach((el) => observer.observe(el));
+
+      // Course filter tabs
+      const courseTabs = document.querySelectorAll(".course-tab");
+      const courseCards = document.querySelectorAll(".course-card");
+      courseTabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          courseTabs.forEach((t) => t.classList.remove("active"));
+          tab.classList.add("active");
+          const filter = tab.dataset.filter;
+          courseCards.forEach((card) => {
+            if (filter === "all" || card.dataset.category === filter) {
+              card.classList.remove("hidden-card");
+            } else {
+              card.classList.add("hidden-card");
+            }
+          });
+        });
+      });
+
+      // Course detail data
+      const courseDetails = {
+        se: {
+          icon: "integration_instructions", color: "primary", tag: "Engineering",
+          title: "Software Engineering",
+          desc: "The discipline of designing, developing, testing, and maintaining software systems at scale.",
+          topics: ["Agile & Scrum", "Waterfall Model", "Requirements Engineering", "UML Diagrams", "Design Patterns", "Version Control", "Testing Strategies", "CI/CD Basics"],
+        },
+        sad: {
+          icon: "account_tree", color: "accent", tag: "Engineering",
+          title: "System Analysis & Design",
+          desc: "Methods for analyzing business needs and engineering information systems that meet them.",
+          topics: ["Data Flow Diagrams", "Entity-Relationship Models", "Use Case Modeling", "Structured Analysis", "OOAD", "Prototyping", "System Documentation", "Feasibility Studies"],
+        },
+        db: {
+          icon: "database", color: "primary", tag: "Systems",
+          title: "Database Administration",
+          desc: "Designing, securing, and optimizing the databases that power modern applications.",
+          topics: ["Relational Model", "SQL & Joins", "Normalization (1NF–BCNF)", "Indexing & Query Optimization", "Transactions & ACID", "Stored Procedures", "Backup & Recovery", "Database Security"],
+        },
+        bl: {
+          icon: "psychology", color: "gold", tag: "Business & Logic",
+          title: "Business & Logic",
+          desc: "Applying formal logic and business reasoning to model real-world processes and decisions.",
+          topics: ["Propositional Logic", "Truth Tables", "Logic Gates", "Predicate Logic", "Business Process Modeling", "Decision Trees", "Boolean Algebra", "Process Optimization"],
+        },
+        dsa: {
+          icon: "graph_3", color: "accent", tag: "Core",
+          title: "Data Structures & Algorithms",
+          desc: "The core toolkit for writing efficient, scalable code and solving complex problems.",
+          topics: ["Arrays & Linked Lists", "Stacks & Queues", "Trees & BSTs", "Graphs & Traversal", "Hash Tables", "Sorting Algorithms", "Dynamic Programming", "Time & Space Complexity"],
+        },
+        os: {
+          icon: "memory", color: "primary", tag: "Systems",
+          title: "Operating Systems",
+          desc: "How computers manage resources, run programs, and provide the foundation for all software.",
+          topics: ["Process Management", "Thread Scheduling", "Memory Allocation", "Virtual Memory", "File Systems", "Deadlocks", "Inter-Process Communication", "Security & Protection"],
+        },
+        net: {
+          icon: "lan", color: "accent", tag: "Systems",
+          title: "Computer Networks",
+          desc: "The protocols and architectures that connect computers across the globe.",
+          topics: ["OSI Model", "TCP/IP Stack", "IP Addressing & Subnetting", "Routing Protocols", "DNS & DHCP", "HTTP/HTTPS", "Socket Programming", "Network Security"],
+        },
+        oop: {
+          icon: "widgets", color: "primary", tag: "Core",
+          title: "Object-Oriented Programming",
+          desc: "Designing software around objects and classes for modularity, reusability, and clarity.",
+          topics: ["Classes & Objects", "Encapsulation", "Inheritance", "Polymorphism", "Abstraction", "Interfaces", "SOLID Principles", "Design by Contract"],
+        },
+        web: {
+          icon: "code_blocks", color: "accent", tag: "Engineering",
+          title: "Web Development",
+          desc: "Building interactive, full-stack web applications from frontend to backend.",
+          topics: ["HTML5 & CSS3", "JavaScript ES6+", "DOM Manipulation", "RESTful APIs", "React Fundamentals", "Node.js & Express", "Authentication", "Responsive Design"],
+        },
+        dm: {
+          icon: "function", color: "gold", tag: "Business & Logic",
+          title: "Discrete Mathematics",
+          desc: "The mathematical language that underpins computation, algorithms, and logic.",
+          topics: ["Set Theory", "Relations & Functions", "Combinatorics", "Graph Theory", "Recurrence Relations", "Modular Arithmetic", "Formal Proofs", "Automata Theory"],
+        },
+        ca: {
+          icon: "developer_board", color: "primary", tag: "Core",
+          title: "Computer Architecture",
+          desc: "From logic gates up — how processors, memory, and logic gates execute your code.",
+          topics: ["Digital Logic Gates", "Boolean Circuits", "CPU Design", "Instruction Sets", "Pipelining", "Cache Hierarchy", "Memory Organization", "Assembly Language"],
+        },
+        isb: {
+          icon: "insights", color: "gold", tag: "Business & Logic",
+          title: "Information Systems for Business",
+          desc: "How organizations leverage technology to drive strategy, efficiency, and innovation.",
+          topics: ["Enterprise Systems (ERP)", "Business Intelligence", "Data Analytics", "IT Strategy", "Digital Transformation", "E-Commerce Systems", "Project Management", "IT Governance"],
+        },
+      };
+
+      const modal = document.getElementById("course-modal");
+      const modalBody = document.getElementById("course-modal-body");
+      const modalClose = document.getElementById("course-modal-close");
+
+      courseCards.forEach((card) => {
+        card.addEventListener("click", () => {
+          const data = courseDetails[card.dataset.course];
+          if (!data) return;
+          const colorMap = { gold: { c: "#fbbf24", bg: "rgba(251,191,36,0.1)", bd: "rgba(251,191,36,0.2)" }, accent: { c: "#2dd4bf", bg: "rgba(45,212,191,0.1)", bd: "rgba(45,212,191,0.2)" }, primary: { c: "#3b82f6", bg: "rgba(59,130,246,0.1)", bd: "rgba(59,130,246,0.2)" } };
+          const cm = colorMap[data.color] || colorMap.primary;
+          modalBody.innerHTML = `
+            <div class="flex items-center gap-4 mb-5">
+              <div class="w-14 h-14 rounded-2xl flex items-center justify-center" style="background: ${cm.bg}; border: 1px solid ${cm.bd};">
+                <span class="material-symbols-outlined text-[28px]" style="color: ${cm.c};">${data.icon}</span>
+              </div>
+              <div>
+                <span class="font-mono text-[10px] text-text-mute uppercase tracking-wider">${data.tag}</span>
+                <h3 class="text-2xl font-bold text-text-main leading-tight">${data.title}</h3>
+              </div>
+            </div>
+            <p class="text-text-dim leading-relaxed mb-6">${data.desc}</p>
+            <p class="font-mono text-xs text-text-mute uppercase tracking-wider mb-3">Key Topics Covered</p>
+            <div class="grid grid-cols-2 gap-2">
+              ${data.topics.map((t) => `<div class="flex items-center gap-2 text-sm text-text-dim px-3 py-2 rounded-lg bg-surface/40 border border-border"><span class="material-symbols-outlined text-[16px]" style="color: ${cm.c};">check_circle</span>${t}</div>`).join("")}
+            </div>
+          `;
+          modal.classList.remove("hidden");
+          modal.classList.add("flex");
+        });
+      });
+
+      modalClose.addEventListener("click", () => {
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
+      });
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          modal.classList.add("hidden");
+          modal.classList.remove("flex");
+        }
+      });
 
       // Navbar scroll state
       const navbar = document.getElementById("navbar");
