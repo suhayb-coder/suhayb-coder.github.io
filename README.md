@@ -6,7 +6,7 @@ Welcome to my personal developer portfolio! This repository contains the source 
 
 I am a passionate computer science student and software developer based in Zanzibar. My focus is on learning and practicing modern software development, building practical projects, and growing as a software engineer.
 
-You can view the live site here: [https://suhayb-coder.github.io/](https://suhayb-coder.github.io/) *(Make sure to update this link if your URL changes!)*
+You can view the live site here: [https://suhaybsaeed099.github.io/](https://suhaybsaeed099.github.io/) *(Make sure to update this link if your URL changes!)*
 
 ## 🛠️ Built With
 
@@ -28,19 +28,19 @@ If you'd like to run this site locally:
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/suhayb-coder/Suhayb-Portfolio.git
+   git clone https://github.com/suhaybsaeed099/suhaybsaeed099.github.io.git
    ```
 2. Navigate into the directory:
    ```bash
-   cd Suhayb-Portfolio
+   cd suhaybsaeed099.github.io
    ```
 3. Open `index.html` in your favorite web browser, or use a local development server like Live Server (for VS Code) to serve the file.
 
 ## 📫 Contact
 
-- **Email**: [suhaybsaeed1@gmail.com](mailto:suhaybsaeed1@gmail.com)
+- **Email**: [suhaybsaeed099@gmail.com](mailto:suhaybsaeed099@gmail.com)
 - **LinkedIn**: [Suhayb Saeed](https://www.linkedin.com/in/suhayb-saeed-44b7503a9/)
-- **GitHub**: [suhayb-coder](https://github.com/suhayb-coder)
+- **GitHub**: [suhaybsaeed099](https://github.com/suhaybsaeed099)
 
 ---
 
